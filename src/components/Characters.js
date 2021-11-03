@@ -18,7 +18,7 @@ import StickyHeadTable from './StickyHeadTable.js';
 
 
 
-function Characters({match, matchfull, handleChipClick}) {
+function Characters({match, matchfull, handleChipClick, handleTableSort}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -68,14 +68,14 @@ const ExpandMore = styled((props) => {
               </CardActions>
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                  <Typography paragraph>Royalty: {match[0].royalty} </Typography>
+                  <Typography paragraph>Royalty: {match[0].royalty ? "Royal" : "Commoner"} </Typography>
                   <Typography paragraph>House: </Typography>
                   <Typography paragraph>Orders: </Typography>
                   <Typography paragraph>Spouse:  </Typography>
                 </CardContent>
               </Collapse>
             </Card>
-            <StickyHeadTable match={match} />
+            <StickyHeadTable match={match} handleChipClick={handleChipClick} handleTableSort={handleTableSort} />
             <Box>
 
             <TempDrawerChar match={matchfull} handleChipClick={handleChipClick}/>

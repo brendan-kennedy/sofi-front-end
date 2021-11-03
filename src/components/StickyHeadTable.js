@@ -7,12 +7,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
 
-export default function StickyHeadTable({ match }) {
+export default function StickyHeadTable({ match, handleChipClick, handleTableSort}) {
   const columns = [
-    { id: "home", align: "left", label: "Image", minWidth: 170 },
-    { id: "house", align: "left", label: "House", minWidth: 100 },
     { id: "name", align: "left", label: "Name", minWidth: 100 },
+    // { id: "house", align: "left", label: "House", minWidth: 100 },
+    // { id: "royalty", align: "left", label: "Royalty?", minWidth: 100 },
+    // { id: "image", align: "left", label: "Image", minWidth: 170 },
   ];
   const rows = match;
   const [page, setPage] = React.useState(0);
@@ -54,9 +57,15 @@ export default function StickyHeadTable({ match }) {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
+                          <Chip
+                            avatar={<Avatar alt={value} src={row["image"]} />}
+                            label={value}
+                            variant="outlined"
+                            onClick={(event) => handleTableSort(event.target.outerText)}
+                          />
+                          {/* {column.format && typeof value === "number"
                             ? column.format(value)
-                            : value}
+                            : value} */}
                         </TableCell>
                       );
                     })}

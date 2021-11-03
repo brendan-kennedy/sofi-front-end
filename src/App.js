@@ -29,6 +29,11 @@ function App() {
     setSearchString(result);
   };
 
+  const handleTableSort = (result) => {
+    let newCharData = charData.splice(charData.findIndex((elem) => elem.name === result), 1);
+    setCharData(newCharData.concat(charData));
+  };
+
   // const url = "https://thronesapi.com/api/v2/Characters";
   const url = "http://localhost:3001/GOT/characters";
   const [gotData, setGotData] = useState({
@@ -89,7 +94,7 @@ function App() {
       <body>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/characters" exact render={() => <Characters matchfull={gotData.characters} match={charData} handleChipClick={handleChipClick} />} />
+          <Route path="/characters" exact render={() => <Characters matchfull={gotData.characters} match={charData} handleChipClick={handleChipClick} handleTableSort={handleTableSort} />} />
           <Route path="/houses/:name" exact component={HousesDetails} />
           <Route path="/houses" exact render={() => <Houses match={houseData} />} />
           <Route path="/orders/:name" exact component={OrdersDetails} />
