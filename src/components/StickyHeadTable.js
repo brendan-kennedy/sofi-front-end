@@ -14,7 +14,7 @@ export default function StickyHeadTable({ match }) {
     { id: "house", label: "House", minWidth: 170 },
     { id: "name", label: "Name", minWidth: 100 },
   ];
-  const rows = houseData;
+  const rows = match;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

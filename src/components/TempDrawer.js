@@ -9,9 +9,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import HouseboatOutlinedIcon from '@mui/icons-material/HouseboatOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
 import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined';
+import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 import SportsKabaddiOutlinedIcon from '@mui/icons-material/SportsKabaddiOutlined';
 import {Link} from 'react-router-dom';
 
@@ -40,10 +41,10 @@ export default function TempDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
 
-    
+
 
   <List>
-    
+
       <Link to="/" style={{ textDecoration: 'none', color: 'black'}}>
         <ListItem disablePadding>
               <ListItemButton>
@@ -59,7 +60,7 @@ export default function TempDrawer() {
           <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
-                    <PersonOutlineOutlinedIcon />
+                    <GroupsOutlinedIcon />
                   </ListItemIcon>
                   <ListItemText primary="Characters" />
                 </ListItemButton>
@@ -75,18 +76,18 @@ export default function TempDrawer() {
                     <ListItemText primary="Houses" />
                   </ListItemButton>
             </ListItem>
-      </Link>      
+      </Link>
 
       <Link to="/orders" style={{ textDecoration: 'none', color: 'black'}}>
             <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
-                      <SecurityOutlinedIcon  />
+                      <FlagOutlinedIcon   />
                     </ListItemIcon>
                     <ListItemText primary="Orders" />
                   </ListItemButton>
             </ListItem>
-      </Link>  
+      </Link>
 
       <Link to="/tree" style={{ textDecoration: 'none', color: 'black'}}>
             <ListItem disablePadding>
@@ -111,7 +112,7 @@ export default function TempDrawer() {
       </Link>
 
 
-                
+
   </List>
 
 

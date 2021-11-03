@@ -11,17 +11,19 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import TempDrawerChar from "../components/TempDrawerChar.js";
+import TempDrawerChar from "./TempDrawerChar.js";
 import Box from '@mui/material/Box';
 import {Link} from 'react-router-dom';
 import '../App.css';
+import StickyHeadTable from './StickyHeadTable.js';
 
 
 
 
-function Characters({match}) {
+function Characters({match, matchfull}) {
+  // console.log(match);
   const [expanded, setExpanded] = React.useState(false);
-  
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -45,6 +47,16 @@ function Characters({match}) {
 //         setResult(results);
 //         };
 
+// const theme = createTheme();
+
+// theme.typography.h3 = {
+//   fontSize: '1.2 rem',
+//   '@media (min-width:600px)': {
+//       fontsize: '1.5 rem',
+// }
+// }
+
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -57,10 +69,10 @@ const ExpandMore = styled((props) => {
 }));
 
         return (
-          <main>  
+          <main>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
-                title="NAME"
+                title={match.name}
               />
               <CardMedia
                 component="img"
@@ -68,14 +80,14 @@ const ExpandMore = styled((props) => {
                 image= "url" alt="Logo"
                 alt="Sorry you cant see our badass Pokemon"
               />
-        
+
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites" >
                   {/* <Favorites favorite={result.name}/> */}
                   <FavoriteIcon />
-                  
+
                 </IconButton>
-        
+
                 <ExpandMore
                   expand={expanded}
                   onClick={handleExpandClick}
@@ -94,16 +106,16 @@ const ExpandMore = styled((props) => {
                 </CardContent>
               </Collapse>
             </Card>
-
+            <StickyHeadTable match={match} />
             <Box>
 
-            <TempDrawerChar/>
+            <TempDrawerChar match={matchfull}/>
 
             </Box>
 
 
-        </main>  
+        </main>
           );
         }
-      
+
 export default Characters;

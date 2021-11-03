@@ -2,10 +2,13 @@ import "./App.css";
 import SearchAppBar from "./components/SearchAppBar.js";
 import { Switch, Route } from "react-router-dom";
 import Houses from "./components/Houses.js";
+import HousesDetails from "./components/HousesDetails.js";
+import Home from "./components/Home.js";
 import Characters from "./components/Characters.js";
 import Tree from "./components/Tree.js";
 import Battle from "./components/Battle.js";
 import Orders from "./components/Orders.js";
+import OrdersDetails from "./components/OrdersDetails.js";
 import fetch from "cross-fetch";
 import { useState, useEffect } from "react";
 
@@ -61,14 +64,14 @@ function App() {
 
       <body>
         <Switch>
-          <Route path="/characters" render={() => <Characters charData={charData} />} />
-          <Route
-            path="/houses"
-            render={() => <Houses houseData={houseData} />}
-          />
-          <Route path="/orders" component={Orders} />
-          <Route path="/tree" component={Tree} />
-          <Route path="/battle" component={Battle} />
+          <Route path="/" exact component={Home} />
+          <Route path="/characters" exact render={() => <Characters matchfull={gotData.characters} match={charData} />} />
+          <Route path="/houses/:name" exact component={HousesDetails} />
+          <Route path="/houses" exact render={() => <Houses match={houseData} />} />
+          <Route path="/orders/:name" exact component={OrdersDetails} />
+          <Route path="/orders" exact component={Orders} />
+          <Route path="/tree" exact component={Tree} />
+          <Route path="/battle" exact component={Battle} />
         </Switch>
       </body>
     </div>

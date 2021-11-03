@@ -5,17 +5,31 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import CharAccordion from "./CharAccordion.js";
+// import Stack from '@mui/material/Stack';
+
 
 import {Link} from 'react-router-dom';
 
 
-export default function TempDrawer() {
+export default function TempDrawer({match}) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
+
+  let chipList = match.map((elem, idx) => (
+    <Chip
+    avatar={<Avatar alt={elem.name} src="" />}
+    label={elem.name}
+    variant="outlined"
+  />
+
+  ))
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -33,15 +47,25 @@ export default function TempDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
 
-    
+
 
   <List>
-    
+
    <Link to="/characters" style={{ textDecoration: 'none', color: 'black'}}>
           <ListItem disablePadding>
                 <h3>Characters</h3>
           </ListItem>
       </Link>
+
+  </List>
+
+
+
+  <List>
+
+  <CharAccordion/>
+
+ {chipList}
 
   </List>
 
