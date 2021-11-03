@@ -21,7 +21,6 @@ import StickyHeadTable from './StickyHeadTable.js';
 
 
 function Characters({match, matchfull, handleChipClick}) {
-  console.log("Match: ", match);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
