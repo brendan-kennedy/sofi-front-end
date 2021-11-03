@@ -11,6 +11,9 @@ import Orders from "./components/Orders.js";
 import OrdersDetails from "./components/OrdersDetails.js";
 import fetch from "cross-fetch";
 import { useState, useEffect } from "react";
+import {ThemeProvider} from "@mui/material/styles";
+import { createTheme } from '@mui/material/styles';
+
 
 function App() {
   const [searchString, setSearchString] = useState("");
@@ -50,18 +53,34 @@ function App() {
       let charSearchArr = gotData.characters.filter((elem) =>
         elem.name.includes(searchString)
       );
-      let houseSearchArr = gotData.houses.filter((elem) =>
-        elem.house.includes(searchString)
-      );
+      // let houseSearchArr = gotData.houses.filter((elem) =>
+      //   elem.house.includes(searchString)
+      // );
       // let relatSearchArr = gotData.relationships.filter(elem => elem.name.includes(searchString));
       setCharData(charSearchArr);
-      setHouseData(houseSearchArr);
+      //setHouseData(houseSearchArr);
       // setRelatData(relatSearchArr);
       // window.location.replace("http://localhost:3000/houses");
     }
   }, [searchString]);
 
+  const customTheme = createTheme ({
+    palette: {
+      primary: {
+        main: '#263238',
+      },
+    },
+    typography:{
+      fontFamily: [
+        'Cinzel',
+      ]
+    }
+  });
+
+
+
   return (
+   <ThemeProvider theme = {customTheme}>
     <div>
       <header>
         <SearchAppBar handleSearch={handleSearch} />
@@ -80,6 +99,7 @@ function App() {
         </Switch>
       </body>
     </div>
+  </ThemeProvider>
   );
 }
 

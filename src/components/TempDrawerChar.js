@@ -7,7 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
-import CharAccordion from "./CharAccordion.js";
+// import CharAccordion from "./CharAccordion.js";
 // import Stack from '@mui/material/Stack';
 
 
@@ -67,7 +67,7 @@ export default function TempDrawer({match, handleChipClick}) {
 
   <List>
 
-  <CharAccordion/>
+  {/* <CharAccordion/> */}
 
  {chipList}
 
@@ -82,7 +82,7 @@ export default function TempDrawer({match, handleChipClick}) {
   return (
     <div>
 
-        <h2> See Full List</h2>
+        <h2 color = "primary"> See Full List</h2>
 
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>

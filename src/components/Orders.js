@@ -7,36 +7,17 @@ import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 
 import '../App.css';
-  
+
 
 
 
 
 function Orders ({match}) {
   const [expanded, setExpanded] = React.useState(false);
-  
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-//     useEffect(() => {
-//         fetchResults();
-//         console.log("match", match)
-//     }, []);
-
-//     const [result, setResult] = useState ({
-//       sprites: {}
-//     });
-
-//     const fetchResults = async () => {
-//         const data = await fetch(
-//             `https://pokeapi.co/api/v2/pokemon/${match.params.name}`
-//         );
-
-//         const results = await data.json();
-//         console.log("results:",result);
-//         console.log(match.params.name);
-//         setResult(results);
-//         };
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -50,7 +31,7 @@ const ExpandMore = styled((props) => {
 }));
 
         return (
-          <main>  
+          <main>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
                 title="NIGHTS WATCH"
@@ -61,12 +42,12 @@ const ExpandMore = styled((props) => {
                 image= "url" alt="Logo"
                 alt="Sorry you cant see our badass Pokemon"
               />
-        
-  
-  
+
+
+
             </Card>
-        </main>  
+        </main>
           );
         }
-      
+
 export default Orders;

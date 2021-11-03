@@ -74,10 +74,11 @@ export default function SearchAppBar({handleSearch}) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            {/* <Link to="/" style={{ textDecoration: 'none', color: 'white'}}> Story of Fire and Ice </Link>
-          </Typography> */}
 
-          <Link to="/" img src="https://brandlogovector.com/wp-content/uploads/2020/07/Game-Of-Thrones-Logo-Small.png"></Link>
+          <Link to="/">
+             <img src="https://tinyurl.com/yr2xmb23" alt="logo" width ='60' height='60'/>
+          </Link>
+
           </Typography>
 
           <Link to="/" style={{ textDecoration: 'none', color: 'white'}}>
@@ -96,9 +97,9 @@ export default function SearchAppBar({handleSearch}) {
             <Button variant="contained">Orders</Button>
           </Link>
 
-          <Link to="/tree" style={{ textDecoration: 'none', color: 'white'}}>
+          {/* <Link to="/tree" style={{ textDecoration: 'none', color: 'white'}}>
             <Button variant="contained">Tree</Button>
-          </Link>
+          </Link> */}
 
           <Link to="/battle" style={{ textDecoration: 'none', color: 'white'}}>
             <Button variant="contained">Battle</Button>

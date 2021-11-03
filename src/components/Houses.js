@@ -13,7 +13,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TempDrawerChar from "./TempDrawerChar.js";
 import Box from '@mui/material/Box';
-import {Link} from 'react-router-dom';
 import '../App.css';
 import StickyHeadTable from './StickyHeadTable.js';
 

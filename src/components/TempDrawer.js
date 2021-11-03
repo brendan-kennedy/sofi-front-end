@@ -89,7 +89,7 @@ export default function TempDrawer() {
             </ListItem>
       </Link>
 
-      <Link to="/tree" style={{ textDecoration: 'none', color: 'black'}}>
+      {/* <Link to="/tree" style={{ textDecoration: 'none', color: 'black'}}>
             <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
@@ -98,7 +98,7 @@ export default function TempDrawer() {
                     <ListItemText primary="Tree" />
                   </ListItemButton>
             </ListItem>
-      </Link>
+      </Link> */}
 
       <Link to="/battle" style={{ textDecoration: 'none', color: 'black'}}>
             <ListItem disablePadding>
