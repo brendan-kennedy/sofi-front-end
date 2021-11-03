@@ -22,6 +22,10 @@ function App() {
     event.target.value = "";
   };
 
+  const handleChipClick = (result) => {
+    setSearchString(result);
+  };
+
   // const url = "https://thronesapi.com/api/v2/Characters";
   const url = "http://localhost:3001/GOT/characters";
   const [gotData, setGotData] = useState({
@@ -65,7 +69,7 @@ function App() {
       <body>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/characters" exact render={() => <Characters matchfull={gotData.characters} match={charData} />} />
+          <Route path="/characters" exact render={() => <Characters matchfull={gotData.characters} match={charData} handleChipClick={handleChipClick} />} />
           <Route path="/houses/:name" exact component={HousesDetails} />
           <Route path="/houses" exact render={() => <Houses match={houseData} />} />
           <Route path="/orders/:name" exact component={OrdersDetails} />

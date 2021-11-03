@@ -14,7 +14,7 @@ import CharAccordion from "./CharAccordion.js";
 import {Link} from 'react-router-dom';
 
 
-export default function TempDrawer({match}) {
+export default function TempDrawer({match, handleChipClick}) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -24,9 +24,13 @@ export default function TempDrawer({match}) {
 
   let chipList = match.map((elem, idx) => (
     <Chip
-    avatar={<Avatar alt={elem.name} src="" />}
+    avatar={<Avatar alt={elem.name} src={elem.image} />}
     label={elem.name}
     variant="outlined"
+    onClick={(event) => {
+      // console.log("Chip click: ", event.target.outerText)
+      handleChipClick(event.target.outerText)
+    }}
   />
 
   ))

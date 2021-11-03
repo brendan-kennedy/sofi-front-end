@@ -20,8 +20,8 @@ import StickyHeadTable from './StickyHeadTable.js';
 
 
 
-function Characters({match, matchfull}) {
-  // console.log(match);
+function Characters({match, matchfull, handleChipClick}) {
+  console.log("Match: ", match);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -72,13 +72,13 @@ const ExpandMore = styled((props) => {
           <main>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
-                title={match.name}
+                title= {match[0].name}
               />
               <CardMedia
                 component="img"
                 height="194"
-                image= "url" alt="Logo"
-                alt="Sorry you cant see our badass Pokemon"
+                image= {match[0].image} alt="Logo"
+                alt="GOT Character"
               />
 
               <CardActions disableSpacing>
@@ -99,17 +99,17 @@ const ExpandMore = styled((props) => {
               </CardActions>
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                  <Typography paragraph>Royalty: </Typography>
+                  <Typography paragraph>Royalty: {match[0].royalty} </Typography>
                   <Typography paragraph>House: </Typography>
                   <Typography paragraph>Orders: </Typography>
-                  <Typography paragraph>Spouse: </Typography>
+                  <Typography paragraph>Spouse:  </Typography>
                 </CardContent>
               </Collapse>
             </Card>
             <StickyHeadTable match={match} />
             <Box>
 
-            <TempDrawerChar match={matchfull}/>
+            <TempDrawerChar match={matchfull} handleChipClick={handleChipClick}/>
 
             </Box>
 

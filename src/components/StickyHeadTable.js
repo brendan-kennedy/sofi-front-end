@@ -8,10 +8,11 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Chip from "@mui/material/Chip";
+import Avatar from "@mui/material/Avatar";
 
 export default function StickyHeadTable({ match }) {
   const columns = [
-    { id: "house", label: "House", minWidth: 170 },
+    { id: "home", label: "Image", minWidth: 170 },
     { id: "name", label: "Name", minWidth: 100 },
   ];
   const rows = match;
@@ -54,16 +55,9 @@ export default function StickyHeadTable({ match }) {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          <Chip
-                            key="idx"
-                            label={
-                              column.format && typeof value === "number"
-                                ? column.format(value)
-                                : value
-                            }
-                            variant="outlined"
-                            color="success"
-                          />
+                          {column.format && typeof value === "number"
+                            ? column.format(value)
+                            : value}
                         </TableCell>
                       );
                     })}

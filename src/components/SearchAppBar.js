@@ -74,7 +74,10 @@ export default function SearchAppBar({handleSearch}) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            <Link to="/" style={{ textDecoration: 'none', color: 'white'}}> Story of Fire and Ice </Link>
+            {/* <Link to="/" style={{ textDecoration: 'none', color: 'white'}}> Story of Fire and Ice </Link>
+          </Typography> */}
+
+          <Link to="/" img src="https://brandlogovector.com/wp-content/uploads/2020/07/Game-Of-Thrones-Logo-Small.png"></Link>
           </Typography>
 
           <Link to="/" style={{ textDecoration: 'none', color: 'white'}}>
