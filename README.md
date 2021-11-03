@@ -69,10 +69,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-<!-- User Stories
 
-1. As a user, I want to see the webpage's title as well as all of the website's tools (Homepage link, Houses, Orders, Characters, and a Search Bar) when I go to the homepage, so that I can access any of them from the navigation bar.
-2. As a user, I want to be able to search for Houses's information using either a search bar, a list, or an interactive mpa, so that when I select a house or search for one, I'm taken to the house's page with it's pertinent data.
-3. As a user, I want to be able to search for Characters' information using either a search bar or a list, so that when hit enter or click on them I am provided with the character's pertinent information.
-4. As a user, I want to be able to access information for each of the Orders in GoT, so that when I click on the Orders tab of the nav bar, I'm presented with a grid of cards of the various orders which can be opened for more information.
-  -->
+# User Stories
+
+## 1. As a user, I want to see the webpage's title as well as all of the website's tools (Homepage link, Houses, Orders, Characters, and a Search Bar) when I go to the homepage, so that I can access any of them from the navigation bar.
+## 2. As a user, I want to be able to search for Houses's information using either a search bar, a list, or an interactive mpa, so that when I select a house or search for one, I'm taken to the house's page with it's pertinent data.
+## 3. As a user, I want to be able to search for Characters' information using either a search bar or a list, so that when hit enter or click on them I am provided with the character's pertinent information.
+## 4. As a user, I want to be able to access information for each of the Orders in GoT, so that when I click on the Orders tab of the nav bar, I'm presented with a grid of cards of the various orders which can be opened for more information.
+
