@@ -6,18 +6,11 @@ import Characters from "./components/Characters.js";
 import Tree from "./components/Tree.js";
 import Battle from "./components/Battle.js";
 import Orders from "./components/Orders.js";
-import OrdersDetails from "./components/OrdersDetails.js";
-import HousesDetails from "./components/HousesDetails.js";
-import Home from "./components/Home.js";
-import {ThemeProvider} from "@mui/material/styles";
-import { createTheme } from '@mui/material/styles';
-import { purple } from '@mui/material/colors';
 import fetch from "cross-fetch";
 import { useState, useEffect } from "react";
 
-
 function App() {
-  const [searchString, setSearchString] = useState();
+  const [searchString, setSearchString] = useState("");
   const [charData, setCharData] = useState([]);
   const [houseData, setHouseData] = useState([]);
   const [relatData, setRelatData] = useState([]);
@@ -26,13 +19,13 @@ function App() {
     event.target.value = "";
   };
 
- // const url = "https://thronesapi.com/api/v2/Characters";
- const url = "http://localhost:3001/GOT/characters";
- const [gotData, setGotData] = useState({
-   characters: [],
-   houses: [],
-   relationships: [],
- });
+  // const url = "https://thronesapi.com/api/v2/Characters";
+  const url = "http://localhost:3001/GOT/characters";
+  const [gotData, setGotData] = useState({
+    characters: [],
+    houses: [],
+    relationships: [],
+  });
 
   useEffect(() => {
     const getApi = async (url) => {
@@ -60,57 +53,25 @@ function App() {
     }
   }, [searchString]);
 
-  // const customTheme = createTheme ({
-  //   palette: {
-  //     // type: 'dark'
-  //     primary: 'purple',
-  //     // secondary: '',
-  //     // error: '',
-  //     // warning: '',
-  //     // info: '',
-  //     // success: '',
-  //   },
-  // typography: {
-  //   fontFamily: [
-  //     'Cinzel',
-  //     cursive,
-  //   ].join(','),
-  // } 
-  // });
-
-
-
   return (
-
-  // <ThemeProvider theme = {customTheme}> 
     <div>
+      <header>
+        <SearchAppBar handleSearch={handleSearch} />
+      </header>
 
-          <header>
-            <SearchAppBar style ={{background: purple }} handleSearch={handleSearch} />
-          </header>
-
-
-          <body>
-
-            <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/characters" render={() => <Characters match={charData} />} />
+      <body>
+        <Switch>
+          <Route path="/characters" render={() => <Characters charData={charData} />} />
           <Route
             path="/houses"
-            render={() => <Houses match={houseData} />}
+            render={() => <Houses houseData={houseData} />}
           />
-              {/* <Route path="/characters" exact component={Characters}/>
-              <Route path="/houses" exact component={Houses}/> */}
-              <Route path="/houses/:name" exact component={HousesDetails}/>
-              <Route path="/orders" exact component={Orders}/>
-              <Route path="/orders/:name" exact component={OrdersDetails}/>
-              <Route path="/tree" exact component={Tree}/>
-              <Route path="/battle" exact component={Battle}/>
-            </Switch>
-
-          </body>
-      </div>
-    // </ThemeProvider>
+          <Route path="/orders" component={Orders} />
+          <Route path="/tree" component={Tree} />
+          <Route path="/battle" component={Battle} />
+        </Switch>
+      </body>
+    </div>
   );
 }
 
