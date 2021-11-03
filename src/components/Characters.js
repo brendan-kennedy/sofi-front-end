@@ -19,41 +19,12 @@ import StickyHeadTable from './StickyHeadTable.js';
 
 
 
-
 function Characters({match, matchfull, handleChipClick}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-//     useEffect(() => {
-//         fetchResults();
-//         console.log("match", match)
-//     }, []);
-
-//     const [result, setResult] = useState ({
-//       sprites: {}
-//     });
-
-//     const fetchResults = async () => {
-//         const data = await fetch(
-//             `https://pokeapi.co/api/v2/pokemon/${match.params.name}`
-//         );
-
-//         const results = await data.json();
-//         console.log("results:",result);
-//         console.log(match.params.name);
-//         setResult(results);
-//         };
-
-// const theme = createTheme();
-
-// theme.typography.h3 = {
-//   fontSize: '1.2 rem',
-//   '@media (min-width:600px)': {
-//       fontsize: '1.5 rem',
-// }
-// }
 
 
 const ExpandMore = styled((props) => {
