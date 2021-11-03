@@ -13,6 +13,7 @@ import Avatar from "@mui/material/Avatar";
 export default function StickyHeadTable({ match }) {
   const columns = [
     { id: "home", label: "Image", minWidth: 170 },
+    { id: "house", label: "House", minWidth: 100 },
     { id: "name", label: "Name", minWidth: 100 },
   ];
   const rows = match;

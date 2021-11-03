@@ -11,37 +11,21 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import TempDrawerChar from "./TempDrawerChar.js";
+import Box from '@mui/material/Box';
+import {Link} from 'react-router-dom';
 import '../App.css';
-  
+import StickyHeadTable from './StickyHeadTable.js';
 
 
 
-
-function Houses ({match}) {
+function Houses({match, matchfull, handleChipClick}) {
   const [expanded, setExpanded] = React.useState(false);
-  
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-//     useEffect(() => {
-//         fetchResults();
-//         console.log("match", match)
-//     }, []);
 
-//     const [result, setResult] = useState ({
-//       sprites: {}
-//     });
-
-//     const fetchResults = async () => {
-//         const data = await fetch(
-//             `https://pokeapi.co/api/v2/pokemon/${match.params.name}`
-//         );
-
-//         const results = await data.json();
-//         console.log("results:",result);
-//         console.log(match.params.name);
-//         setResult(results);
-//         };
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -55,30 +39,25 @@ const ExpandMore = styled((props) => {
 }));
 
         return (
-          <main>  
+          <main>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
-                title="HOUSE OF STARK"
+                title= {match[0].name}
               />
               <CardMedia
                 component="img"
                 height="194"
-                image= "url" alt="Logo"
-                alt="Sorry you cant see our badass Pokemon"
+                image= {match[0].image} alt="Logo"
+                alt="GOT Character"
               />
-        
-              <CardContent>
-                  <Typography paragraph>LOCATION </Typography>
-
-                </CardContent>
 
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites" >
                   {/* <Favorites favorite={result.name}/> */}
                   <FavoriteIcon />
-                  
+
                 </IconButton>
-        
+
                 <ExpandMore
                   expand={expanded}
                   onClick={handleExpandClick}
@@ -90,13 +69,23 @@ const ExpandMore = styled((props) => {
               </CardActions>
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                  <Typography paragraph>Members: </Typography>
-
+                  <Typography paragraph>Royalty: {match[0].royalty} </Typography>
+                  <Typography paragraph>House: </Typography>
+                  <Typography paragraph>Orders: </Typography>
+                  <Typography paragraph>Spouse:  </Typography>
                 </CardContent>
               </Collapse>
             </Card>
-        </main>  
+            <StickyHeadTable match={match} />
+            <Box>
+
+            <TempDrawerChar match={matchfull} handleChipClick={handleChipClick}/>
+
+            </Box>
+
+
+        </main>
           );
         }
-      
+
 export default Houses;
