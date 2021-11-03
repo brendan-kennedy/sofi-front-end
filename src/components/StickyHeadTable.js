@@ -7,14 +7,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import Chip from "@mui/material/Chip";
-import Avatar from "@mui/material/Avatar";
 
 export default function StickyHeadTable({ match }) {
   const columns = [
-    { id: "home", label: "Image", minWidth: 170 },
-    { id: "house", label: "House", minWidth: 100 },
-    { id: "name", label: "Name", minWidth: 100 },
+    { id: "home", align: "left", label: "Image", minWidth: 170 },
+    { id: "house", align: "left", label: "House", minWidth: 100 },
+    { id: "name", align: "left", label: "Name", minWidth: 100 },
   ];
   const rows = match;
   const [page, setPage] = React.useState(0);
