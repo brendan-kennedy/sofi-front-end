@@ -40,6 +40,7 @@ function App() {
       //possible to destructure json data for specific field (e.g. URI field) with {fieldname}
       const apiData = await response.json();
       setGotData(apiData);
+      setSearchString("Jon Snow");
     };
     getApi(url);
   }, []);
