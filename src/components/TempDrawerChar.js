@@ -5,12 +5,7 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ViewListOutlinedIcon from "@mui/icons-material/ViewListOutlined";
-import Avatar from "@mui/material/Avatar";
-import Chip from "@mui/material/Chip";
-// import CharAccordion from "./CharAccordion.js";
-// import Stack from '@mui/material/Stack';
-import SimpleAccordion from './SimpleAccordion.js';
-
+import SimpleAccordion from "./SimpleAccordion.js";
 import { Link } from "react-router-dom";
 
 export default function TempDrawer({ match, handleChipClick }) {
@@ -21,14 +16,7 @@ export default function TempDrawer({ match, handleChipClick }) {
     right: false,
   });
 
-  // let chipList = match.map((elem, idx) => (
-  //   <Chip
-  //     avatar={<Avatar alt={elem.name} src={elem.image} />}
-  //     label={elem.name}
-  //     variant="outlined"
-  //     onClick={(event) => handleChipClick(event.target.outerText)}
-  //   />
-  // ));
+  let listTitle = window.location.pathname.slice(1, 2).toUpperCase() + window.location.pathname.slice(2) ;
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -53,13 +41,12 @@ export default function TempDrawer({ match, handleChipClick }) {
           style={{ textDecoration: "none", color: "black" }}
         >
           <ListItem disablePadding>
-            <h3>Characters</h3>
+            <h3>{listTitle}</h3>
           </ListItem>
         </Link>
       </List>
       <List>
-        <SimpleAccordion match={match} handleChipClick={handleChipClick}/>
-        {/* {chipList} */}
+        <SimpleAccordion match={match} handleChipClick={handleChipClick} />
       </List>
       <Divider />
     </Box>

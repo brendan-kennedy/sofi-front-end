@@ -7,19 +7,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import Avatar from '@mui/material/Avatar';
-import Chip from '@mui/material/Chip';
+import Avatar from "@mui/material/Avatar";
+import Chip from "@mui/material/Chip";
 
-export default function StickyHeadTable({ match, handleChipClick, handleTableSort}) {
-  const columns = [
-    { id: "name", align: "left", label: "Name", minWidth: 100 },
-    { id: "house", align: "left", label: "House", minWidth: 100 },
-    // { id: "royalty", align: "left", label: "Royalty?", minWidth: 100 },
-    // { id: "image", align: "left", label: "Image", minWidth: 170 },
-  ];
+export default function StickyHeadTable({
+  match,
+  matchColumns,
+  handleChipClick,
+  handleTableSort,
+}) {
+  const columns = matchColumns;
   const rows = match;
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(20);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -61,11 +61,13 @@ export default function StickyHeadTable({ match, handleChipClick, handleTableSor
                             avatar={<Avatar alt={value} src={row["image"]} />}
                             label={value}
                             variant="outlined"
-                            onClick={(event) => handleTableSort(event.target.outerText)}
+                            onClick={(event) =>
+                              handleTableSort(
+                                event.target.outerText,
+                                window.location.pathname
+                              )
+                            }
                           />
-                          {/* {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value} */}
                         </TableCell>
                       );
                     })}
@@ -76,7 +78,7 @@ export default function StickyHeadTable({ match, handleChipClick, handleTableSor
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[20, 50, 100]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}

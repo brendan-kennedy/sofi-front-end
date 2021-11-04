@@ -57,7 +57,7 @@ export default function SimpleAccordion({ match, handleChipClick }) {
                 avatar={<Avatar alt={melem.name} src={melem.image} />}
                 label={melem.name}
                 variant="outlined"
-                onClick={(event) => handleChipClick(event.target.outerText)}
+                onClick={(event) => handleChipClick(event.target.outerText, window.location.pathname)}
               />
             ))}
         </Typography>
