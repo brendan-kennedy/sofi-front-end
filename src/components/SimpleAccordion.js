@@ -8,48 +8,17 @@ import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 
 export default function SimpleAccordion({ match, handleChipClick }) {
-  const alphabet = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
 
-  let newAlphabet = [];
+  let alphabet = [];
 
   const emptyCheck = match.map(elem => {
-    if (!newAlphabet.includes(elem.name.slice(0, 1))) {
-      newAlphabet.push(elem.name.slice(0, 1).toUpperCase());
+    if (!alphabet.includes(elem.name.slice(0, 1))) {
+      alphabet.push(elem.name.slice(0, 1).toUpperCase());
     }
-    // newAlphabet = newAlphabet.toUpperCase();
-    newAlphabet = newAlphabet.sort();
+    alphabet = alphabet.sort();
   })
 
-  console.log("Drawer list: ", newAlphabet);
-
-  const fullAlphabet = newAlphabet.map((elem, idx) => (
+  const fullAlphabet = alphabet.map((elem, idx) => (
     <Accordion key="idx">
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
