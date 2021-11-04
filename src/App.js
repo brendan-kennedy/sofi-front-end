@@ -15,10 +15,12 @@ import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 
 function App() {
+  //establish state variables for processing
   const [searchString, setSearchString] = useState("");
   const [charData, setCharData] = useState([]);
   const [houseData, setHouseData] = useState([]);
   const [orderData, setOrderData] = useState([]);
+
   const handleSearch = (event) => {
     setSearchString(event.target.value);
     event.target.value = "";
