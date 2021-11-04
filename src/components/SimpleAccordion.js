@@ -8,7 +8,6 @@ import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 
 export default function SimpleAccordion({ match, handleChipClick }) {
-
   const alphabet = [
     "A",
     "B",
@@ -38,6 +37,24 @@ export default function SimpleAccordion({ match, handleChipClick }) {
     "Z",
   ];
 
+  const emptyCheck = (
+    <div>
+      {match
+        .filter((felem) => felem.name.slice(0, 1) === elem)
+        .map((melem, midx) => (
+          <Chip
+            key="midx"
+            avatar={<Avatar alt={melem.name} src={melem.image} />}
+            label={melem.name}
+            variant="outlined"
+            onClick={(event) =>
+              handleChipClick(event.target.outerText, window.location.pathname)
+            }
+          />
+        ))}
+    </div>
+  );
+
   const fullAlphabet = alphabet.map((elem, idx) => (
     <Accordion key="idx">
       <AccordionSummary
@@ -57,7 +74,12 @@ export default function SimpleAccordion({ match, handleChipClick }) {
                 avatar={<Avatar alt={melem.name} src={melem.image} />}
                 label={melem.name}
                 variant="outlined"
-                onClick={(event) => handleChipClick(event.target.outerText, window.location.pathname)}
+                onClick={(event) =>
+                  handleChipClick(
+                    event.target.outerText,
+                    window.location.pathname
+                  )
+                }
               />
             ))}
         </Typography>
