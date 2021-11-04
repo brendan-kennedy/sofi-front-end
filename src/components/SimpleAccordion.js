@@ -41,7 +41,7 @@ export default function SimpleAccordion({ match, handleChipClick }) {
 
   const emptyCheck = match.map(elem => {
     if (!newAlphabet.includes(elem.name.slice(0, 1))) {
-      newAlphabet.push(elem.name.slice(0, 1));
+      newAlphabet.push(elem.name.slice(0, 1).toUpperCase());
     }
     // newAlphabet = newAlphabet.toUpperCase();
     newAlphabet = newAlphabet.sort();
@@ -49,7 +49,7 @@ export default function SimpleAccordion({ match, handleChipClick }) {
 
   console.log("Drawer list: ", newAlphabet);
 
-  const fullAlphabet = alphabet.map((elem, idx) => (
+  const fullAlphabet = newAlphabet.map((elem, idx) => (
     <Accordion key="idx">
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
