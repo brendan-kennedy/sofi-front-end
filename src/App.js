@@ -15,12 +15,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 
 function App() {
-  //establish state variables for processing
+  //establish state variables for processing back end data
   const [searchString, setSearchString] = useState("");
   const [charData, setCharData] = useState([]);
   const [houseData, setHouseData] = useState([]);
   const [orderData, setOrderData] = useState([]);
 
+
+  //series of handlers for user interactivity- these will be passed to the functional components as props
   const handleSearch = (event) => {
     setSearchString(event.target.value);
     event.target.value = "";
@@ -30,6 +32,7 @@ function App() {
     setSearchString(`${result}#${fromLocation}`);
   };
 
+  //brings the chosen table element to the top of the list
   const handleTableSort = (result, fromLocation) => {
     if (fromLocation === "/characters") {
       let newCharData = charData.splice(
@@ -53,6 +56,8 @@ function App() {
     setSearchString(`${result}#${fromLocation}`);
   };
 
+
+  //get backend data
   // const url = "http://localhost:3001/GOT/characters";
   const url = "http://localhost:3001/GOT/test";
   const [gotData, setGotData] = useState({
@@ -61,6 +66,8 @@ function App() {
     relationships: [],
   });
 
+
+  //initialize page
   useEffect(() => {
     const getApi = async (url) => {
       const response = await fetch(url, { mode: "no-cors" });
@@ -71,18 +78,14 @@ function App() {
     getApi(url);
   }, []);
 
+  //page updater based upon search string- searchGroup is appended by #<group> (default is 'name')
+  //this component keeps the three arrays in harmony
   useEffect(() => {
     let tempSearch = searchString.split("#");
     let searchGroup = tempSearch[1] ? tempSearch[1].slice(1, -1) : "name";
     searchGroup = searchGroup === "character" ? "name" : searchGroup;
 
     if (tempSearch[0]) {
-      console.log(
-        "Character filter: ",
-        searchGroup,
-        tempSearch[0],
-        gotData.characters
-      );
       let charSearchArr = [];
       gotData.characters.map((elem) => {
         if (elem[searchGroup] !== null) {
@@ -92,8 +95,6 @@ function App() {
         }
       });
 
-      console.log("Temp search:", charSearchArr);
-
       let houseSearchArr = gotData.houses.filter((elem) =>
         elem.name.includes(charSearchArr ? charSearchArr[0].house : "")
       );
@@ -101,6 +102,7 @@ function App() {
       let orderSearchArr = gotData.orders.filter((elem) =>
         elem.name.includes(charSearchArr ? charSearchArr[0].order : "")
       );
+
       setCharData(charSearchArr);
       setHouseData(houseSearchArr);
       setOrderData(orderSearchArr);
@@ -161,6 +163,7 @@ function App() {
                 <Houses
                   matchfull={gotData.orders}
                   match={orderData}
+                  matchChar={charData}
                   handleChipClick={handleChipClick}
                   // handleTableSort={handleTableSort}
                 />

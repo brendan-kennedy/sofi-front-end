@@ -33,8 +33,11 @@ function Unified({ match, matchfull, tableColumns, handleChipClick, handleTableS
     }),
   }));
 
+  //card will be populated based upon the first element in the array (i.e. 'match[0]')- if it exists
   return (
-    <main>
+  <body>
+    <article>
+    <Box sx={{ display: 'flex', justifyContent: 'center'}}>
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader title={match[0] ? match[0].name : ''} />
         <CardMedia
@@ -68,16 +71,29 @@ function Unified({ match, matchfull, tableColumns, handleChipClick, handleTableS
           </CardContent>
         </Collapse>
       </Card>
+
+
+
+    </Box>
+
+
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end'}}>
+        <TempDrawerChar match={matchfull} handleChipClick={handleChipClick} />
+    </Box>
+
+  </article>
+
+    <main>
       <StickyHeadTable
         match={match}
         matchColumns={tableColumns}
         handleChipClick={handleChipClick}
         handleTableSort={handleTableSort}
-      />
-      <Box>
-        <TempDrawerChar match={matchfull} handleChipClick={handleChipClick} />
-      </Box>
+        sx={{ display: 'flex', alignItems: 'center'}}>
+      </StickyHeadTable>
     </main>
+
+</body>
   );
 }
 

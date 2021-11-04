@@ -16,6 +16,7 @@ export default function TempDrawer({ match, handleChipClick }) {
     right: false,
   });
 
+  //develop the list name from the page URI
   let listTitle = window.location.pathname.slice(1, 2).toUpperCase() + window.location.pathname.slice(2) ;
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -40,9 +41,14 @@ export default function TempDrawer({ match, handleChipClick }) {
           to="/characters"
           style={{ textDecoration: "none", color: "black" }}
         >
-          <ListItem disablePadding>
+
+          {/* Title */}
+
+          <ListItem disablePadding sx={{ display: 'flex', justifyContent: 'center'}}>
             <h3>{listTitle}</h3>
           </ListItem>
+
+
         </Link>
       </List>
       <List>
@@ -53,17 +59,20 @@ export default function TempDrawer({ match, handleChipClick }) {
   );
 
   return (
-    <div>
-      <h2 color="primary"> See Full List</h2>
+    <Box>
+
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
+
           <ViewListOutlinedIcon
-            sx={{ fontSize: 100 }}
-            color="disabled"
+            sx={{ fontSize: 50 }}
+            color="primary"
             onClick={toggleDrawer(anchor, true)}
           >
             {anchor}
           </ViewListOutlinedIcon>
+          <h1 color="primary">See Full List</h1>
+
           <Drawer
             anchor={anchor}
             open={state[anchor]}
@@ -73,6 +82,6 @@ export default function TempDrawer({ match, handleChipClick }) {
           </Drawer>
         </React.Fragment>
       ))}
-    </div>
+    </Box>
   );
 }

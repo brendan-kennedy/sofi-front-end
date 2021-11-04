@@ -12,7 +12,6 @@ WebFont.load({
   }
 });
 
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

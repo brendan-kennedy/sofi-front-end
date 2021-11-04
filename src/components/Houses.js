@@ -4,10 +4,12 @@ import Unified from './Unified.js';
 
 function Houses({ match, matchfull, handleChipClick }) {
 
+  //define the table columns for the page
   const matchColumns = [
     { id: "house", align: "left", label: "House", minWidth: 100 }
   ];
 
+  //dead-end the tablesort for this page
   const handleTableSort = () => {};
 
   return (

@@ -28,7 +28,7 @@
 
 body{
   background-color: whitesmoke;
-  color: whitesmoke;
+  color:#263238;
   font-family: 'Cinzel',cursive;
 }
 
@@ -47,5 +47,6 @@ main{
   align-items: center;
   font-family: 'Cinzel',cursive;
 }
+
 
 

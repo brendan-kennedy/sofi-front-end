@@ -88,6 +88,7 @@ function Characters({ match, matchfull, handleChipClick, handleTableSort }) {
   //   </main>
   // );
 
+  //define the table columns for the page
   const matchColumns = [
     { id: "name", align: "left", label: "Name", minWidth: 100 },
     { id: "house", align: "left", label: "House", minWidth: 100 },
