@@ -87,7 +87,7 @@ function App() {
 
     if (tempSearch[0]) {
       let charSearchArr = [];
-      gotData.characters.map((elem) => {
+      gotData.characters.forEach((elem) => {
         if (elem[searchGroup] !== null) {
           if (elem[searchGroup].includes(tempSearch[0])) {
             charSearchArr.push(elem);

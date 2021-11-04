@@ -37,23 +37,17 @@ export default function SimpleAccordion({ match, handleChipClick }) {
     "Z",
   ];
 
-  const emptyCheck = (
-    <div>
-      {match
-        .filter((felem) => felem.name.slice(0, 1) === elem)
-        .map((melem, midx) => (
-          <Chip
-            key="midx"
-            avatar={<Avatar alt={melem.name} src={melem.image} />}
-            label={melem.name}
-            variant="outlined"
-            onClick={(event) =>
-              handleChipClick(event.target.outerText, window.location.pathname)
-            }
-          />
-        ))}
-    </div>
-  );
+  let newAlphabet = [];
+
+  const emptyCheck = match.map(elem => {
+    if (!newAlphabet.includes(elem.name.slice(0, 1))) {
+      newAlphabet.push(elem.name.slice(0, 1));
+    }
+    // newAlphabet = newAlphabet.toUpperCase();
+    newAlphabet = newAlphabet.sort();
+  })
+
+  console.log("Drawer list: ", newAlphabet);
 
   const fullAlphabet = alphabet.map((elem, idx) => (
     <Accordion key="idx">
@@ -61,6 +55,7 @@ export default function SimpleAccordion({ match, handleChipClick }) {
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel2a-content"
         id="panel2a-header"
+        // sx={{display: 'none'}}
       >
         <Typography>{elem}</Typography>
       </AccordionSummary>
