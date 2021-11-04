@@ -172,7 +172,20 @@ function App() {
               )}
             />
             <Route path="/tree" exact component={Tree} />
-            <Route path="/battle" exact component={Battle} />
+            {/* <Route path="/battle" exact component={Battle} /> */}
+            <Route
+              path="/battle"
+              exact
+              render={() => (
+                <Battle
+                  match={gotData.characters}
+                  matchfull={gotData.characters}
+                  matchChar={charData}
+                  handleChipClick={handleChipClick}
+                  // handleTableSort={handleTableSort}
+                />
+              )}
+            />
           </Switch>
         </body>
       </div>

@@ -8,7 +8,7 @@ import ViewListOutlinedIcon from "@mui/icons-material/ViewListOutlined";
 import SimpleAccordion from "./SimpleAccordion.js";
 import { Link } from "react-router-dom";
 
-export default function TempDrawer({ match, handleChipClick }) {
+export default function TempDrawerDuel({ match, handleChipClick }) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -52,7 +52,7 @@ export default function TempDrawer({ match, handleChipClick }) {
         </Link>
       </List>
       <List>
-
+                    <SimpleAccordion match={match} handleChipClick={handleChipClick} />
       </List>
       <Divider />
     </Box>

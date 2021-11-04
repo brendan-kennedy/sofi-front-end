@@ -8,7 +8,7 @@ import ViewListOutlinedIcon from "@mui/icons-material/ViewListOutlined";
 import SimpleAccordion from "./SimpleAccordion.js";
 import { Link } from "react-router-dom";
 
-export default function TempDrawer({ match, handleChipClick }) {
+export default function TempDrawerChar({ match, handleChipClick }) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
