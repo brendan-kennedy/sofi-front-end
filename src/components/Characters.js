@@ -14,9 +14,9 @@ import React from "react";
 // import Box from "@mui/material/Box";
 // import StickyHeadTable from "./StickyHeadTable.js";
 import "../App.css";
-import Unified from './Unified.js';
+import Unified from "./Unified.js";
 
-function Characters({ match, matchfull, handleChipClick, handleTableSort }) {
+function Characters({ match, matchfull, matchChar, handleChipClick, handleTableSort }) {
   // const [expanded, setExpanded] = React.useState(false);
 
   // const handleExpandClick = () => {
@@ -95,8 +95,16 @@ function Characters({ match, matchfull, handleChipClick, handleTableSort }) {
   ];
 
   return (
-    <Unified match={match} matchfull={matchfull} tableColumns={matchColumns} handleChipClick={handleChipClick} handleTableSort={handleTableSort} />
-  )
+    <Unified
+      source="characters"
+      match={match}
+      matchfull={matchfull}
+      matchChar={matchChar}
+      tableColumns={matchColumns}
+      handleChipClick={handleChipClick}
+      handleTableSort={handleTableSort}
+    />
+  );
 }
 
 export default Characters;

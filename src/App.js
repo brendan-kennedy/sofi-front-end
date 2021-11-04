@@ -116,7 +116,7 @@ function App() {
       },
     },
     typography: {
-      fontFamily: ["Cinzel"],
+      fontFamily: ['Cinzel'],
     },
   });
 
@@ -135,8 +135,9 @@ function App() {
               exact
               render={() => (
                 <Characters
-                  matchfull={gotData.characters}
                   match={charData}
+                  matchfull={gotData.characters}
+                  matchChar={charData}
                   handleChipClick={handleChipClick}
                   handleTableSort={handleTableSort}
                 />
@@ -148,8 +149,9 @@ function App() {
               exact
               render={() => (
                 <Houses
-                  matchfull={gotData.houses}
                   match={houseData}
+                  matchfull={gotData.houses}
+                  matchChar={charData}
                   handleChipClick={handleChipClick}
                   // handleTableSort={handleTableSort}
                 />
@@ -160,9 +162,9 @@ function App() {
               path="/orders"
               exact
               render={() => (
-                <Houses
-                  matchfull={gotData.orders}
+                <Orders
                   match={orderData}
+                  matchfull={gotData.orders}
                   matchChar={charData}
                   handleChipClick={handleChipClick}
                   // handleTableSort={handleTableSort}

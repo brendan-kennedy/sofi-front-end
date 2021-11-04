@@ -4,6 +4,8 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import DuelAcc from "../components/DuelAcc.js";
+import TempDrawerDuel from "../components/TempDrawerDuel.js";
 import '../App.css';
 
 function Battle() {
@@ -12,7 +14,7 @@ function Battle() {
   <section>
       <main>
     <Box>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345}}>
         <CardHeader
           title="JON SNOW"
         />
@@ -22,7 +24,11 @@ function Battle() {
           image= "url" alt="Logo"
         />
       </Card>
-      <Button variant="contained">Select Your Opponent</Button>
+
+      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <TempDrawerDuel/>
+        </Box>
+
     </Box>
 
     <Box>
@@ -47,6 +53,8 @@ function Battle() {
         <Box sx={{ display: 'flex', justifyContent: 'center'}}>
           <h1>JON SNOW DECLARES VICTORY!</h1>
         </Box>
+
+
   </section>
 
 
