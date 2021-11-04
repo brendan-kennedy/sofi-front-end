@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 function Characters() {
   useEffect(() => {
@@ -25,6 +26,8 @@ function Characters() {
   };
 
   return (
+
+  <main>
     <Button variant="contained" onClick={() => handleClick()}>
       Primary
     </Button>
