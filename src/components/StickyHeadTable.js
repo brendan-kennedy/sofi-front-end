@@ -13,7 +13,7 @@ import Chip from '@mui/material/Chip';
 export default function StickyHeadTable({ match, handleChipClick, handleTableSort}) {
   const columns = [
     { id: "name", align: "left", label: "Name", minWidth: 100 },
-    // { id: "house", align: "left", label: "House", minWidth: 100 },
+    { id: "house", align: "left", label: "House", minWidth: 100 },
     // { id: "royalty", align: "left", label: "Royalty?", minWidth: 100 },
     // { id: "image", align: "left", label: "Image", minWidth: 170 },
   ];

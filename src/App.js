@@ -34,8 +34,8 @@ function App() {
     setCharData(newCharData.concat(charData));
   };
 
-  // const url = "https://thronesapi.com/api/v2/Characters";
-  const url = "http://localhost:3001/GOT/characters";
+  // const url = "http://localhost:3001/GOT/characters";
+  const url = "http://localhost:3001/GOT/test";
   const [gotData, setGotData] = useState({
     characters: [],
     houses: [],

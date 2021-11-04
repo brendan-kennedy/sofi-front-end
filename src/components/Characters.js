@@ -62,8 +62,8 @@ function Characters({ match, matchfull, handleChipClick, handleTableSort }) {
             <Typography paragraph>
               Royalty: {match[0] ? (match[0].royalty ? "Royal" : "Commoner") : ''}
             </Typography>
-            <Typography paragraph>House: </Typography>
-            <Typography paragraph>Orders: </Typography>
+            <Typography paragraph>House: {match[0] ? match[0].house : ''} </Typography>
+            <Typography paragraph>Orders: {match[0] ? match[0].order : ''}</Typography>
             <Typography paragraph>Spouse: </Typography>
           </CardContent>
         </Collapse>
