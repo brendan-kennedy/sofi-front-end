@@ -9,6 +9,7 @@ import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 // import CharAccordion from "./CharAccordion.js";
 // import Stack from '@mui/material/Stack';
+import SimpleAccordion from './SimpleAccordion.js';
 
 import { Link } from "react-router-dom";
 
@@ -20,14 +21,14 @@ export default function TempDrawer({ match, handleChipClick }) {
     right: false,
   });
 
-  let chipList = match.map((elem, idx) => (
-    <Chip
-      avatar={<Avatar alt={elem.name} src={elem.image} />}
-      label={elem.name}
-      variant="outlined"
-      onClick={(event) => handleChipClick(event.target.outerText)}
-    />
-  ));
+  // let chipList = match.map((elem, idx) => (
+  //   <Chip
+  //     avatar={<Avatar alt={elem.name} src={elem.image} />}
+  //     label={elem.name}
+  //     variant="outlined"
+  //     onClick={(event) => handleChipClick(event.target.outerText)}
+  //   />
+  // ));
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -36,15 +37,14 @@ export default function TempDrawer({ match, handleChipClick }) {
     ) {
       return;
     }
-
     setState({ ...state, [anchor]: open });
   };
 
-  const list = (anchor) => (
+  const list = (anchor, match) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
+      // onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
@@ -57,13 +57,10 @@ export default function TempDrawer({ match, handleChipClick }) {
           </ListItem>
         </Link>
       </List>
-
       <List>
-        {/* <CharAccordion/> */}
-
-        {chipList}
+        <SimpleAccordion match={match} handleChipClick={handleChipClick}/>
+        {/* {chipList} */}
       </List>
-
       <Divider />
     </Box>
   );
@@ -71,7 +68,6 @@ export default function TempDrawer({ match, handleChipClick }) {
   return (
     <div>
       <h2 color="primary"> See Full List</h2>
-
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
           <ViewListOutlinedIcon
@@ -86,7 +82,7 @@ export default function TempDrawer({ match, handleChipClick }) {
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
-            {list(anchor)}
+            {list(anchor, match)}
           </Drawer>
         </React.Fragment>
       ))}

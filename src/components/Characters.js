@@ -36,12 +36,12 @@ function Characters({ match, matchfull, handleChipClick, handleTableSort }) {
   return (
     <main>
       <Card sx={{ maxWidth: 345 }}>
-        <CardHeader title={match[0].name} />
+        <CardHeader title={match[0] ? match[0].name : ''} />
         <CardMedia
           component="img"
           height="194"
-          image={match[0].image}
-          alt={match[0].name}
+          image={match[0] ? match[0].image : ''}
+          alt={match[0] ? match[0].name : ''}
         />
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
@@ -60,7 +60,7 @@ function Characters({ match, matchfull, handleChipClick, handleTableSort }) {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>
-              Royalty: {match[0].royalty ? "Royal" : "Commoner"}
+              Royalty: {match[0] ? (match[0].royalty ? "Royal" : "Commoner") : ''}
             </Typography>
             <Typography paragraph>House: </Typography>
             <Typography paragraph>Orders: </Typography>
