@@ -1,8 +1,5 @@
 import React from "react";
 import "../App.css";
-import Unified from './Unified.js';
-
-
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -11,8 +8,6 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TempDrawerChar from "./TempDrawerChar.js";
 import Box from "@mui/material/Box";
@@ -35,7 +30,6 @@ function Orders({ match, matchfull, matchChar, handleChipClick }) {
 
 
   const tableColumns = matchColumns;
-
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -53,10 +47,6 @@ function Orders({ match, matchfull, matchChar, handleChipClick }) {
     }),
   }));
 
-  // return (
-  //   <Unified match={match} matchfull={matchfull} tableColumns={matchColumns} handleChipClick={handleChipClick} handleTableSort={handleTableSort} />
-  // )
-
   //card will be populated based upon the first element in the array (i.e. 'match[0]')- if it exists
   return (
     <body>
@@ -71,10 +61,6 @@ function Orders({ match, matchfull, matchChar, handleChipClick }) {
             alt={match[0] ? match[0].name : ''}
           />
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              {/* <Favorites favorite={result.name}/> */}
-              <FavoriteIcon />
-            </IconButton>
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -86,19 +72,15 @@ function Orders({ match, matchfull, matchChar, handleChipClick }) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <SimpleAccordion match={matchChar} handleChipClick={handleChipClick}/>
+              {/* <SimpleAccordion match={matchChar} handleChipClick={handleChipClick}/> */}
             </CardContent>
           </Collapse>
         </Card>
       </Box>
-
-
       <Box>
           <TempDrawerChar match={matchfull} handleChipClick={handleChipClick} />
       </Box>
-
     </article>
-
       <main>
         <StickyHeadTable
           match={match}
@@ -108,10 +90,8 @@ function Orders({ match, matchfull, matchChar, handleChipClick }) {
           sx={{ display: 'flex', alignItems: 'center'}}>
         </StickyHeadTable>
       </main>
-
   </body>
-    );
-
+  );
 }
 
 export default Orders;

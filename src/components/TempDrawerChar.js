@@ -63,15 +63,15 @@ export default function TempDrawer({ match, handleChipClick }) {
 
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-
+        {/* <h1 color="primary">See Full List</h1> */}
           <ViewListOutlinedIcon
-            sx={{ fontSize: 50 }}
+            sx={{ fontSize: 50, justifyContent : "space-around" }}
             color="primary"
             onClick={toggleDrawer(anchor, true)}
           >
             {anchor}
           </ViewListOutlinedIcon>
-          <h1 color="primary">See Full List</h1>
+
 
           <Drawer
             anchor={anchor}
