@@ -58,8 +58,7 @@ function App() {
 
 
   //get backend data
-  // const url = "http://localhost:3001/GOT/characters";
-  const url = "http://localhost:3001/GOT/test";
+  const url = "http://localhost:3001/GOT/characters";
   const [gotData, setGotData] = useState({
     characters: [],
     houses: [],
