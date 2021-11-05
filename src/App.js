@@ -82,7 +82,8 @@ function App() {
   useEffect(() => {
     let tempSearch = searchString.split("#");
     let searchGroup = tempSearch[1] ? tempSearch[1].slice(1, -1) : "name";
-    searchGroup = searchGroup === "character" ? "name" : searchGroup;
+    if (searchGroup !== 'order' || searchGroup !== 'house') {searchGroup = 'name'}
+    // searchGroup = searchGroup === "character" ? "name" : searchGroup;
 
     if (tempSearch[0]) {
       let charSearchArr = [];
@@ -177,7 +178,7 @@ function App() {
               exact
               render={() => (
                 <Battle
-                  match={gotData.characters}
+                  match={charData}
                   matchfull={gotData.characters}
                   matchChar={charData}
                   handleChipClick={handleChipClick}

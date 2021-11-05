@@ -14,7 +14,7 @@ function Characters() {
   const [randomChar, setRandomChar] = useState({});
 
   const fetchResults = async () => {
-    const data = await fetch("http://localhost:3001/GOT/test");
+    const data = await fetch("http://localhost:3001/GOT/characters");
 
     const results = await data.json();
     console.log(results.characters);

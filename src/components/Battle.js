@@ -8,19 +8,23 @@ import DuelAcc from "../components/DuelAcc.js";
 import TempDrawerDuel from "../components/TempDrawerDuel.js";
 import "../App.css";
 
-function Battle({ match, handleChipClick }) {
+function Battle({ match, matchfull, handleChipClick }) {
   console.log("Match: ", match);
   return (
     <section>
       <main>
         <Box>
+
+          {/* USER CARD */}
           <Card sx={{ maxWidth: 345 }}>
-            <CardHeader title="JON SNOW" />
-            <CardMedia component="img" height="194" image="url" alt="Logo" />
+            {console.log("Match: ", match[0].name)}
+            <CardHeader title= {match[0] ? match[0].name : ""} />
+            {/* {match[0] ? match[0].order : ""} */}
+            <CardMedia component="img" height="194" image={match[0] ? match[0].image : ""} alt="Logo" />
           </Card>
 
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <TempDrawerDuel match={match} handleChipClick={handleChipClick} />
+            <TempDrawerDuel match={matchfull} handleChipClick={handleChipClick} />
           </Box>
         </Box>
 

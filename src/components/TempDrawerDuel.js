@@ -53,10 +53,13 @@ export default function TempDrawerDuel({ match, handleChipClick }) {
       </List>
       <List>
                     <SimpleAccordion match={match} handleChipClick={handleChipClick} />
+
+
       </List>
       <Divider />
     </Box>
   );
+  console.log(handleChipClick);
 
   return (
     <Box>
@@ -85,3 +88,4 @@ export default function TempDrawerDuel({ match, handleChipClick }) {
     </Box>
   );
 }
+
