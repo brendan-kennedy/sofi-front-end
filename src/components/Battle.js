@@ -27,14 +27,12 @@ function Battle({ match, matchfull, handleChipClick }) {
 
 
   const handleClick = () => {
-    console.log("Clicker");
     let randomNumber = Math.floor(Math.random() * (results.length - 1));
-    console.log("Random: ", randomNumber);
     let charSelectedByRandomNumber = results.find(
       (elem, index) => index === randomNumber
     );
     setRandomChar(charSelectedByRandomNumber);
-    console.log(charSelectedByRandomNumber);
+    console.log("Opponent: ", charSelectedByRandomNumber);
   };
 
 
@@ -55,10 +53,12 @@ function Battle({ match, matchfull, handleChipClick }) {
               </Box>
         </Box>
 
+              {/* BATTLE BUTTON */}
         <Box>
           <Button variant="contained">BATTLE!</Button>
         </Box>
 
+            {/* OPPONENT CARD */}
         <Box>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader title={randomChar?.name} />
@@ -77,6 +77,7 @@ function Battle({ match, matchfull, handleChipClick }) {
 
       </main>
 
+          {/* RESULT MESSAGE */}
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <h1>JON SNOW DECLARES VICTORY!</h1>
         </Box>
