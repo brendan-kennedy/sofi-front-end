@@ -4,15 +4,21 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import DuelAcc from "../components/DuelAcc.js";
 import TempDrawerDuel from "../components/TempDrawerDuel.js";
 import "../App.css";
+import Sound from 'react-sound';
+import song from '../song.mp3';
 
-function Battle({ match, matchfull, handleChipClick }) {
+function Battle({ match, matchfull, handleChipClick,
+  handleSongLoading,
+  handleSongPlaying,
+  handleSongFinishedPlaying }) {
   const [results, setResults] = useState([]);
   const [randomChar, setRandomChar] = useState({});
-  let [victor, setVictor] = useState("FIGHT");
+  let [victor, setVictor] = useState("Battle Characters To Find The True Ruler of Westeros!");
+  const [isPlaying, setIsPlaying] = useState(false);
 
+  //Fetch for Opponent Card
   const fetchResults = async () => {
     const data = await fetch("http://localhost:3001/GOT/characters");
 
@@ -20,7 +26,7 @@ function Battle({ match, matchfull, handleChipClick }) {
     setResults(results.characters);
   };
 
-
+     // Handler For Opponent Card
   const handleClick = () => {
     let randomNumber = Math.floor(Math.random() * (results.length - 1));
     let charSelectedByRandomNumber = results.find(
@@ -29,11 +35,10 @@ function Battle({ match, matchfull, handleChipClick }) {
       setRandomChar(charSelectedByRandomNumber);
     };
 
+        // Handler Battle - compares strength for user and opponent cards
     const handleDuel = () =>{
       let UserChar = match[0].attack_value ? match[0].attack_value : 1;
       let OpponentChar = randomChar.attack_value ? randomChar.attack_value : 1;
-
-
 
       if (OpponentChar < UserChar){
         setVictor(`${match[0].name} is declared the Ruler of Westoros!`);
@@ -42,6 +47,8 @@ function Battle({ match, matchfull, handleChipClick }) {
       };
       console.log("Victor: ", victor)
     }
+
+
 
     useEffect(() => {
       fetchResults();
@@ -52,21 +59,20 @@ function Battle({ match, matchfull, handleChipClick }) {
     return (
       <section>
       <main>
-        <Box>
+      <Box>
           {/* USER CARD */}
-          <Card sx={{ maxWidth: 345 }}>
-            {console.log("Champion: ", match[0])}
+          <Card sx={{ maxWidth: 290 }}>
             <CardHeader title={match[0] ? match[0].name : ""} />
-            {/* {match[0] ? match[0].order : ""} */}
             <CardMedia
               component="img"
               height="194"
               image={match[0] ? match[0].image : ""}
-              alt="Logo"
+              alt={`This character has no image. Sad ${match[0]?.name || "character"
+              } :(`}
             />
           </Card>
 
-          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Box>
             <TempDrawerDuel
               match={matchfull}
               handleChipClick={handleChipClick}
@@ -76,14 +82,27 @@ function Battle({ match, matchfull, handleChipClick }) {
 
         {/* BATTLE BUTTON */}
         <Box>
-          <Button variant="contained" onClick={() => handleDuel()}>
-            BATTLE!
+          <Button variant="contained" onClick={() => {
+          handleDuel();
+            setIsPlaying(!isPlaying);
+            }}>
+            BATTLE FOR THE CROWN OF WESTOROS!
           </Button>
-        </Box>
+          <Sound
+        url= {song}
+        playStatus={
+          isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED
+        }
+        playFromPosition={300}
+        onLoading={handleSongLoading}
+        onPlaying={handleSongPlaying}
+        onFinishedPlaying={handleSongFinishedPlaying}
+        />
+    </Box>
 
         {/* OPPONENT CARD */}
         <Box>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 290 }}>
             <CardHeader title={randomChar?.name} />
             <CardMedia
               component="img"
@@ -93,9 +112,12 @@ function Battle({ match, matchfull, handleChipClick }) {
                 randomChar?.name || "character"
               } :(`}
             />
+
           </Card>
 
-          <Button variant="contained" onClick={() => handleClick()}>
+                {/* Select Random Opponent */}
+          <Button variant="contained" onClick={() => {
+            handleClick();}}>
             Select Your Opponent
           </Button>
         </Box>
@@ -105,6 +127,11 @@ function Battle({ match, matchfull, handleChipClick }) {
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <h1>{victor}</h1>
       </Box>
+
+
+
+
+
     </section>
   );
 }

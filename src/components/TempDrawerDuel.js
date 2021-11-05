@@ -1,5 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
@@ -67,13 +68,16 @@ export default function TempDrawerDuel({ match, handleChipClick }) {
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
         {/* <h1 color="primary">See Full List</h1> */}
-          <ViewListOutlinedIcon
-            sx={{ fontSize: 50, justifyContent : "space-around" }}
-            color="primary"
+
+        {/* BUTTON CHANGE */}
+          <Button
+            variant="contained"
             onClick={toggleDrawer(anchor, true)}
           >
-            {anchor}
-          </ViewListOutlinedIcon>
+            Select Your Character
+
+          </Button>
+
 
 
           <Drawer

@@ -8,7 +8,6 @@ import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TempDrawerChar from "./TempDrawerChar.js";
 import Box from "@mui/material/Box";
@@ -75,7 +74,7 @@ function Unified({
     <body>
       <article>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 290 }}>
             <CardHeader title={match[0] ? match[0].name : ""} />
             <CardMedia
               component="img"

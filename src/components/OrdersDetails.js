@@ -4,14 +4,22 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
+import Sound from 'react-sound';
+import song from '../song.mp3';
 
-function Characters() {
+
+
+export default function Characters(
+  handleSongLoading,
+  handleSongPlaying,
+  handleSongFinishedPlaying) {
   useEffect(() => {
     fetchResults();
   }, []);
 
   const [results, setResults] = useState([]);
   const [randomChar, setRandomChar] = useState({});
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const fetchResults = async () => {
     const data = await fetch("http://localhost:3001/GOT/characters");
@@ -33,6 +41,12 @@ function Characters() {
     console.log(charSelectedByRandomNumber);
   };
 
+
+  // const PlaySound =(
+    // handleSongLoading,
+    // handleSongPlaying,
+    // handleSongFinishedPlaying
+  // ) =>{
   return (
     <section>
       <Button variant="contained" onClick={() => handleClick()}>
@@ -52,8 +66,26 @@ function Characters() {
 
 
       </Box>
+
+
+      <Button variant="contained" onClick ={() => setIsPlaying(!isPlaying)}>
+        {!isPlaying ? 'Play' : 'Stop'}
+      </Button>
+      <Sound
+        url= {song}
+        playStatus={
+          isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED
+        }
+        playFromPosition={300}
+        onLoading={handleSongLoading}
+        onPlaying={handleSongPlaying}
+        onFinishedPlaying={handleSongFinishedPlaying}
+        />
+
+
     </section>
   );
 }
 
-export default Characters;
+
+

@@ -21,7 +21,6 @@ function App() {
   const [houseData, setHouseData] = useState([]);
   const [orderData, setOrderData] = useState([]);
 
-
   //series of handlers for user interactivity- these will be passed to the functional components as props
   const handleSearch = (event) => {
     setSearchString(event.target.value);
@@ -56,7 +55,6 @@ function App() {
     setSearchString(`${result}#${fromLocation}`);
   };
 
-
   //get backend data
   const url = "http://localhost:3001/GOT/characters";
   const [gotData, setGotData] = useState({
@@ -64,7 +62,6 @@ function App() {
     houses: [],
     relationships: [],
   });
-
 
   //initialize page
   useEffect(() => {
@@ -80,10 +77,32 @@ function App() {
   //page updater based upon search string- searchGroup is appended by #<group> (default is 'name')
   //this component keeps the three arrays in harmony
   useEffect(() => {
+    const blankChar = [
+      {
+        name: "",
+        royalty: false,
+        image: "",
+        attack_value: 0,
+        order: "",
+        house: "",
+      },
+    ];
+
     let tempSearch = searchString.split("#");
+
+    //let searchGroup = (tempSearch[1].slice(1, -1) in ('order', 'house'))
+    //   ? tempSearch[1].slice(1, -1)
+    //   : 'name';
+
     let searchGroup = tempSearch[1] ? tempSearch[1].slice(1, -1) : "name";
-    if (searchGroup !== 'order' || searchGroup !== 'house') {searchGroup = 'name'}
-    // searchGroup = searchGroup === "character" ? "name" : searchGroup;
+    if (searchGroup !== "order" || searchGroup !== "house") {
+      searchGroup = "name";
+    }
+
+    // let charSearchArr = gotData.characters.filter((elem) =>
+    //   elem[searchGroup] && elem[searchGroup].includes(tempSearch[0])
+    // );
+    // charSearchArr = charSearchArr ? charSearchArr : blankChar;
 
     if (tempSearch[0]) {
       let charSearchArr = [];
@@ -95,9 +114,19 @@ function App() {
         }
       });
 
+      // let houseSearchArr = gotData.houses.map((elem) =>
+      //   elem.name.includes(charSearchArr) ? charSearchArr[0].house : []);
+      // houseSearchArr = houseSearchArr.filter((elem) => elem !== undefined || elem !== []);
+      // console.log("House array: ", houseSearchArr);
+
       let houseSearchArr = gotData.houses.filter((elem) =>
         elem.name.includes(charSearchArr ? charSearchArr[0].house : "")
       );
+
+      // let orderSearchArr = gotData.orders.map((elem) =>
+      //   elem.name.includes(charSearchArr) ? charSearchArr[0].order : []);
+      // orderSearchArr = orderSearchArr.filter((elem) => elem !== undefined || elem !== []);
+      // console.log("Order array: ", orderSearchArr);
 
       let orderSearchArr = gotData.orders.filter((elem) =>
         elem.name.includes(charSearchArr ? charSearchArr[0].order : "")
@@ -116,7 +145,7 @@ function App() {
       },
     },
     typography: {
-      fontFamily: ['Cinzel'],
+      fontFamily: ["Cinzel"],
     },
   });
 
