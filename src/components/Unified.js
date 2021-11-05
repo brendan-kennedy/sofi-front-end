@@ -101,9 +101,11 @@ function Unified({
           </Card>
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <TempDrawerChar match={matchfull} handleChipClick={handleChipClick} />
-        </Box>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}
+        aria-label="toggle drawer" 
+        >
+          <TempDrawerChar match={matchfull} handleChipClick={handleChipClick}/>
+        </Box>   
       </article>
 
       <main>
