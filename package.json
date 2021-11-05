@@ -47,7 +47,11 @@
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@testing-library/cypress": "^8.0.1",
+    "cypress": "^8.7.0",
+    "cypress-jest-adapter": "^0.1.1"
+  },
   "author": "",
   "license": "ISC"
 }
