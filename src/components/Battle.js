@@ -66,6 +66,7 @@ function Battle({ match, matchfull, handleChipClick,
             <CardMedia
               component="img"
               height="194"
+              maxwidth="290"
               image={match[0] ? match[0].image : ""}
               alt={`This character has no image. Sad ${match[0]?.name || "character"
               } :(`}
@@ -82,23 +83,25 @@ function Battle({ match, matchfull, handleChipClick,
 
         {/* BATTLE BUTTON */}
         <Box>
-          <Button variant="contained" onClick={() => {
-          handleDuel();
-            setIsPlaying(!isPlaying);
-            }}>
-            BATTLE FOR THE CROWN OF WESTOROS!
-          </Button>
-          <Sound
-        url= {song}
-        playStatus={
-          isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED
-        }
-        playFromPosition={300}
-        onLoading={handleSongLoading}
-        onPlaying={handleSongPlaying}
-        onFinishedPlaying={handleSongFinishedPlaying}
-        />
-    </Box>
+              <Button variant="contained" onClick={() => {
+              handleDuel();
+                setIsPlaying(true);
+                // setIsPlaying(!isPlaying);
+                }}>
+                BATTLE FOR THE CROWN OF WESTEROS!
+              </Button>
+
+              <Sound
+            url= {song}
+            playStatus={
+              isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED
+            }
+            playFromPosition={300}
+            onLoading={handleSongLoading}
+            onPlaying={handleSongPlaying}
+            onFinishedPlaying={handleSongFinishedPlaying}
+            />
+        </Box>
 
         {/* OPPONENT CARD */}
         <Box>
@@ -107,6 +110,7 @@ function Battle({ match, matchfull, handleChipClick,
             <CardMedia
               component="img"
               height="194"
+              maxwidth="290"
               image={randomChar?.image}
               alt={`This character has no image. Sad ${
                 randomChar?.name || "character"
@@ -117,7 +121,8 @@ function Battle({ match, matchfull, handleChipClick,
 
                 {/* Select Random Opponent */}
           <Button variant="contained" onClick={() => {
-            handleClick();}}>
+            handleClick();
+            setIsPlaying(false)}}>
             Select Your Opponent
           </Button>
         </Box>

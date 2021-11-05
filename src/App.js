@@ -13,6 +13,8 @@ import fetch from "cross-fetch";
 import { useState, useEffect } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 
 function App() {
   //establish state variables for processing back end data
@@ -90,7 +92,7 @@ function App() {
 
     let tempSearch = searchString.split("#");
 
-    //let searchGroup = (tempSearch[1].slice(1, -1) in ('order', 'house'))
+    // let searchGroup = (tempSearch[1].slice(1, -1) in ('order', 'house'))
     //   ? tempSearch[1].slice(1, -1)
     //   : 'name';
 
@@ -99,9 +101,10 @@ function App() {
       searchGroup = "name";
     }
 
-    // let charSearchArr = gotData.characters.filter((elem) =>
+
+    // let charSearchArr = gotData.characters.filter((elem) => {
     //   elem[searchGroup] && elem[searchGroup].includes(tempSearch[0])
-    // );
+    // });
     // charSearchArr = charSearchArr ? charSearchArr : blankChar;
 
     if (tempSearch[0]) {
@@ -217,6 +220,11 @@ function App() {
             />
           </Switch>
         </body>
+                  <Stack spacing={1}>
+                    <Skeleton variant="text" />
+                    <Skeleton variant="circular" width={40} height={40} />
+                    <Skeleton variant="rectangular" width={210} height={118} />
+                  </Stack>
       </div>
     </ThemeProvider>
   );
