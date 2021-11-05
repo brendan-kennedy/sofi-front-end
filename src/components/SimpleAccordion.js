@@ -1,4 +1,4 @@
-import * as React from "react";
+ import * as React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -19,7 +19,8 @@ export default function SimpleAccordion({ match, handleChipClick }) {
   })
 
   const fullAlphabet = alphabet.map((elem, idx) => (
-    <Accordion key="idx">
+    // <Accordion key="idx">
+    <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel2a-content"
@@ -34,7 +35,7 @@ export default function SimpleAccordion({ match, handleChipClick }) {
             .filter((felem) => felem.name.slice(0, 1) === elem)
             .map((melem, midx) => (
               <Chip
-                key="midx"
+                // key="midx"
                 avatar={<Avatar alt={melem.name} src={melem.image} />}
                 label={melem.name}
                 variant="outlined"
