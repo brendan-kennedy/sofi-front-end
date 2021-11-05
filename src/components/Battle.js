@@ -17,7 +17,6 @@ function Battle({ match, matchfull, handleChipClick }) {
     const data = await fetch("http://localhost:3001/GOT/characters");
 
     const results = await data.json();
-    console.log(results.characters);
     setResults(results.characters);
   };
 
@@ -28,14 +27,13 @@ function Battle({ match, matchfull, handleChipClick }) {
       (elem, index) => index === randomNumber
       );
       setRandomChar(charSelectedByRandomNumber);
-      console.log("Opponent: ", charSelectedByRandomNumber);
     };
 
     const handleDuel = () =>{
       let UserChar = match[0].attack_value ? match[0].attack_value : 1;
       let OpponentChar = randomChar.attack_value ? randomChar.attack_value : 1;
 
-      console.log ("VALUES for user", match[0].attack_value);
+
 
       if (OpponentChar < UserChar){
         setVictor(`${match[0].name} is declared the Ruler of Westoros!`);
