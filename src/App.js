@@ -13,8 +13,8 @@ import fetch from "cross-fetch";
 import { useState, useEffect } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
+// import Skeleton from '@mui/material/Skeleton';
+// import Stack from '@mui/material/Stack';
 
 function App() {
   //establish state variables for processing back end data
@@ -220,11 +220,11 @@ function App() {
             />
           </Switch>
         </body>
-                  <Stack spacing={1}>
+                  {/* <Stack spacing={1}>
                     <Skeleton variant="text" />
                     <Skeleton variant="circular" width={40} height={40} />
                     <Skeleton variant="rectangular" width={210} height={118} />
-                  </Stack>
+                  </Stack> */}
       </div>
     </ThemeProvider>
   );
