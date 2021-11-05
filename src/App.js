@@ -92,9 +92,11 @@ function App() {
 
     let tempSearch = searchString.split("#");
 
+    // tempSearch[1] = tempSearch[1] ? tempSearch[1] : "  ";
     // let searchGroup = (tempSearch[1].slice(1, -1) in ('order', 'house'))
     //   ? tempSearch[1].slice(1, -1)
     //   : 'name';
+
 
     let searchGroup = tempSearch[1] ? tempSearch[1].slice(1, -1) : "name";
     if (searchGroup !== "order" || searchGroup !== "house") {
