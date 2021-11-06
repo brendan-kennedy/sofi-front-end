@@ -59,7 +59,6 @@ function App() {
       );
       charByName = newCharByName.concat(charByName);
       setCharNameData(charByName);
-
     } else if (fromLocation === "house") {
       let newCharByHouse = charByHouse.splice(
         charByHouse.findIndex((elem) => elem.house === result),
@@ -166,8 +165,6 @@ function App() {
       (elem) => elem.name && elem.order === orderSearchString
     );
     setCharInOrder(orderSearchArr);
-
-
   }, [searchString]);
 
   const customTheme = createTheme({
