@@ -2,21 +2,20 @@ import React from "react";
 import "../App.css";
 import Unified from "./Unified.js";
 
-function Orders({ match, matchfull, matchChar, handleChipClick }) {
-  //define the table columns for the page
+function Orders({ dataCard, dataTable, dataGroup, dataDrawer, handleTableSort, handleChipClick }) {
   const matchColumns = [
-    { id: "order", align: "left", label: "Order", minWidth: 100 },
+    { id: "name", align: "left", label: "Name", minWidth: 50 },
+    { id: "house", align: "left", label: "House", minWidth: 50 },
+    { id: "order", align: "left", label: "Order", minWidth: 50 },
   ];
-
-  //dead-end the tablesort for this page
-  const handleTableSort = () => {};
 
   return (
     <Unified
-      source="orders"
-      match={match}
-      matchfull={matchfull}
-      matchChar={matchChar}
+      source="order"
+      dataCard={dataCard}
+      dataTable={dataTable}
+      dataGroup={dataGroup}
+      dataDrawer={dataDrawer}
       tableColumns={matchColumns}
       handleChipClick={handleChipClick}
       handleTableSort={handleTableSort}

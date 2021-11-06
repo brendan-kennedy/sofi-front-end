@@ -24,12 +24,10 @@
   color: white;
 } */
 
-
-
-body{
+body {
   background-color: whitesmoke;
-  color:#263238;
-  font-family: 'Cinzel',cursive;
+  color: #263238;
+  font-family: "Cinzel", cursive;
 }
 
 /* @keyframes App-logo-spin {
@@ -41,12 +39,9 @@ body{
   }
 } */
 
-main{
+main {
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
-  font-family: 'Cinzel',cursive;
+  font-family: "Cinzel", cursive;
 }
-
-
-

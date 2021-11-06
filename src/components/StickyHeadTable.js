@@ -11,13 +11,13 @@ import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 
 export default function StickyHeadTable({
-  match,
+  dataTable,
   matchColumns,
   handleChipClick,
   handleTableSort,
 }) {
   const columns = matchColumns;
-  const rows = match;
+  const rows = dataTable;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(20);
 
@@ -62,10 +62,7 @@ export default function StickyHeadTable({
                             label={value}
                             variant="outlined"
                             onClick={(event) =>
-                              handleTableSort(
-                                event.target.outerText,
-                                window.location.pathname
-                              )
+                              handleChipClick(event.target.outerText, column.id)
                             }
                           />
                         </TableCell>

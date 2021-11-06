@@ -4,15 +4,14 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import Sound from 'react-sound';
-import song from '../song.mp3';
-
-
+import Sound from "react-sound";
+import song from "../song.mp3";
 
 export default function Characters(
   handleSongLoading,
   handleSongPlaying,
-  handleSongFinishedPlaying) {
+  handleSongFinishedPlaying
+) {
   useEffect(() => {
     fetchResults();
   }, []);
@@ -25,27 +24,22 @@ export default function Characters(
     const data = await fetch("http://localhost:3001/GOT/characters");
 
     const results = await data.json();
-    console.log(results.characters);
     setResults(results.characters);
   };
   // ddd
 
   const handleClick = () => {
-    console.log("Clicker");
     let randomNumber = Math.floor(Math.random() * (results.length - 1));
-    console.log("Random: ", randomNumber);
     let charSelectedByRandomNumber = results.find(
       (elem, index) => index === randomNumber
     );
     setRandomChar(charSelectedByRandomNumber);
-    console.log(charSelectedByRandomNumber);
   };
 
-
   // const PlaySound =(
-    // handleSongLoading,
-    // handleSongPlaying,
-    // handleSongFinishedPlaying
+  // handleSongLoading,
+  // handleSongPlaying,
+  // handleSongFinishedPlaying
   // ) =>{
   return (
     <section>
@@ -59,33 +53,25 @@ export default function Characters(
           <CardMedia
             component="img"
             height="194"
-            image= {randomChar?.image}
-            alt={`This character has no image. Sad ${randomChar?.name || 'character'} :(`}
+            image={randomChar?.image}
+            alt={`This character has no image. Sad ${
+              randomChar?.name || "character"
+            } :(`}
           />
         </Card>
-
-
       </Box>
 
-
-      <Button variant="contained" onClick ={() => setIsPlaying(!isPlaying)}>
-        {!isPlaying ? 'Play' : 'Stop'}
+      <Button variant="contained" onClick={() => setIsPlaying(!isPlaying)}>
+        {!isPlaying ? "Play" : "Stop"}
       </Button>
       <Sound
-        url= {song}
-        playStatus={
-          isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED
-        }
+        url={song}
+        playStatus={isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED}
         playFromPosition={300}
         onLoading={handleSongLoading}
         onPlaying={handleSongPlaying}
         onFinishedPlaying={handleSongFinishedPlaying}
-        />
-
-
+      />
     </section>
   );
 }
-
-
-

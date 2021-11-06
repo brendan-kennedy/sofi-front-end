@@ -11,38 +11,36 @@ export default function SimpleAccordion({ match, handleChipClick }) {
 
   let alphabet = [];
 
-  const emptyCheck = match.map(elem => {
-    if (!alphabet.includes(elem.name.slice(0, 1))) {
-      alphabet.push(elem.name.slice(0, 1).toUpperCase());
+  const emptyCheck = match.map(element => {
+    if (!alphabet.includes(element.name.slice(0, 1))) {
+      alphabet.push(element.name.slice(0, 1).toUpperCase());
     }
     alphabet = alphabet.sort();
   })
 
-  const fullAlphabet = alphabet.map((elem, idx) => (
-    // <Accordion key="idx">
-    <Accordion>
+  const fullAlphabet = alphabet.map((element, index) => (
+    <Accordion key="index">
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel2a-content"
         id="panel2a-header"
-        // sx={{display: 'none'}}
       >
-        <Typography>{elem}</Typography>
+        <Typography>{element}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography>
           {match
-            .filter((felem) => felem.name.slice(0, 1) === elem)
-            .map((melem, midx) => (
+            .filter((felement) => felement.name.slice(0, 1) === element)
+            .map((melement, mindex) => (
               <Chip
-                // key="midx"
-                avatar={<Avatar alt={melem.name} src={melem.image} />}
-                label={melem.name}
+                key="mindex"
+                avatar={<Avatar alt={melement.name} src={melement.image} />}
+                label={melement.name}
                 variant="outlined"
                 onClick={(event) =>
                   handleChipClick(
                     event.target.outerText,
-                    window.location.pathname
+                    window.location.pathname.slice(1, -1)
                   )
                 }
               />

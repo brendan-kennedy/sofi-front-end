@@ -13,14 +13,15 @@ import TempDrawerChar from "./TempDrawerChar.js";
 import Box from "@mui/material/Box";
 import "../App.css";
 import StickyHeadTable from "./StickyHeadTable.js";
-import CardDetailsOrders from "./CardDetailsOrders.js";
-import CardDetailsHouses from "./CardDetailsHouses.js";
+import CardDetailsHousesAndOrders from "./CardDetailsHousesAndOrders.js";
+import CardDetailsCharacters from "./CardDetailsCharacters.js";
 
 function Unified({
   source,
-  match,
-  matchChar,
-  matchfull,
+  dataCard,
+  dataGroup,
+  dataTable,
+  dataDrawer,
   tableColumns,
   handleChipClick,
   handleTableSort,
@@ -42,45 +43,41 @@ function Unified({
     }),
   }));
 
-  let cardDetails = (
-    <div>
-      <Typography paragraph>
-        Royal: {match[0] ? (match[0].royalty ? "Royal" : "Commoner") : ""}
-      </Typography>
-      <Typography paragraph>
-        House: {match[0] ? match[0].house : ""}
-      </Typography>
-      <Typography paragraph>
-        Orders: {match[0] ? match[0].order : ""}
-      </Typography>
-    </div>
-  );
-
-  if (source === "houses") {
+  let cardDetails;
+  if (source === "house" || source === "order") {
     cardDetails = (
-      <CardDetailsHouses match={matchChar} handleChipClick={handleChipClick} />
+      <CardDetailsHousesAndOrders
+        dataCard={dataGroup}
+        handleChipClick={handleChipClick}
+      />
+    );
+  } else {
+    cardDetails = (
+      <CardDetailsCharacters
+        dataCard={dataCard}
+        handleChipClick={handleChipClick}
+      />
     );
   }
 
-  if (source === "orders") {
-    // handleChipClick(match[0], '')
-    cardDetails = (
-      <CardDetailsOrders match={matchChar} handleChipClick={handleChipClick} />
-    );
-  }
-
-  //card will be populated based upon the first element in the array (i.e. 'match[0]')- if it exists
+  //card will be populated based upon the first element in the array
   return (
     <body>
       <article>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Card sx={{ maxWidth: 290 }}>
-            <CardHeader title={match[0] ? match[0].name : ""} />
+            <CardHeader title={dataCard[0] ? dataCard[0].name : ""} />
             <CardMedia
               component="img"
               height="194"
-              image={match[0] ? match[0].image : ""}
-              alt={match[0] ? match[0].name : ""}
+              image={dataCard[0] ? dataCard[0].image : ""}
+              alt={dataCard[0] ? dataCard[0].name : ""}
+              onClick={(event) =>
+                handleChipClick(
+                  dataCard[0].name,
+                  window.location.pathname.slice(1, -1)
+                )
+              }
             />
             <CardActions disableSpacing>
               <ExpandMore
@@ -93,21 +90,22 @@ function Unified({
               </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-                {cardDetails}
-              </CardContent>
+              <CardContent>{cardDetails}</CardContent>
             </Collapse>
           </Card>
         </Box>
 
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <TempDrawerChar match={matchfull} handleChipClick={handleChipClick} />
+          <TempDrawerChar
+            match={dataDrawer}
+            handleChipClick={handleChipClick}
+          />
         </Box>
       </article>
 
       <main>
         <StickyHeadTable
-          match={match}
+          dataTable={dataTable}
           matchColumns={tableColumns}
           handleChipClick={handleChipClick}
           handleTableSort={handleTableSort}

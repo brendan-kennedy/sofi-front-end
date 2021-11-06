@@ -6,12 +6,12 @@
 } */
 
 code {
-  font-family: 'Cinzel',cursive;
+  font-family: "Cinzel", cursive;
 }
 
 body {
   margin: 0;
- font-family: 'Cinzel',cursive;
- -webkit-font-smoothing: antialiased;
- -moz-osx-font-smoothing: grayscale;
+  font-family: "Cinzel", cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
