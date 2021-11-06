@@ -47,26 +47,26 @@ function App() {
     event.target.value = "";
   };
 
-  const handleChipClick = (result, fromLocation) => {
-    setSearchString(`${result}#${fromLocation}`);
+  const handleChipClick = (result, sortKey) => {
+    setSearchString(`${result}#${sortKey}`);
   };
 
-  const handleTableSort = (result, fromLocation) => {
-    if (fromLocation === "character" || fromLocation === "name") {
+  const handleTableSort = (result, sortKey) => {
+    if (sortKey === "character" || sortKey === "name") {
       let newCharByName = charByName.splice(
         charByName.findIndex((elem) => elem.name === result),
         1
       );
       charByName = newCharByName.concat(charByName);
       setCharNameData(charByName);
-    } else if (fromLocation === "house") {
+    } else if (sortKey === "house") {
       let newCharByHouse = charByHouse.splice(
         charByHouse.findIndex((elem) => elem.house === result),
         1
       );
       charByHouse = newCharByHouse.concat(charByHouse);
       setCharHouseData(charByHouse);
-    } else if ((fromLocation = "order")) {
+    } else if ((sortKey = "order")) {
       let newCharByOrder = charByOrder.splice(
         charByOrder.findIndex((elem) => elem.order === result),
         1
@@ -90,7 +90,7 @@ function App() {
       const response = await fetch(url, { mode: "no-cors" });
       const apiData = await response.json();
       setGotData(apiData);
-      setSearchString("stark");
+      setSearchString("Stark#house");
     };
     getApi(url);
   }, []);
