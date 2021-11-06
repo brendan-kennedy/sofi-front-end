@@ -17,13 +17,31 @@ import { createTheme } from "@mui/material/styles";
 // import Stack from '@mui/material/Stack';
 
 function App() {
-  //establish state variables for processing back end data
-  const [searchString, setSearchString] = useState("");
-  const [charData, setCharData] = useState([]);
-  const [houseData, setHouseData] = useState([]);
-  const [orderData, setOrderData] = useState([]);
+  const blankChar = [
+    {
+      name: "",
+      royalty: false,
+      image: "",
+      attack_value: 0,
+      order: "",
+      house: "",
+    },
+  ];
 
-  //series of handlers for user interactivity- these will be passed to the functional components as props
+  const [searchString, setSearchString] = useState("");
+  const [charNameData, setCharNameData] = useState(blankChar);
+  const [charHouseData, setCharHouseData] = useState(blankChar);
+  const [charOrderData, setCharOrderData] = useState(blankChar);
+  const [houseData, setHouseData] = useState(blankChar);
+  const [orderData, setOrderData] = useState(blankChar);
+  const [charInHouse, setCharInHouse] = useState(blankChar);
+  const [charInOrder, setCharInOrder] = useState(blankChar);
+
+  var charSearchArr = blankChar;
+  var charByName = blankChar;
+  var charByHouse = blankChar;
+  var charByOrder = blankChar;
+
   const handleSearch = (event) => {
     setSearchString(event.target.value);
     event.target.value = "";
@@ -33,114 +51,123 @@ function App() {
     setSearchString(`${result}#${fromLocation}`);
   };
 
-  //brings the chosen table element to the top of the list
   const handleTableSort = (result, fromLocation) => {
-    if (fromLocation === "/characters") {
-      let newCharData = charData.splice(
-        charData.findIndex((elem) => elem.name === result),
+    if (fromLocation === "character" || fromLocation === "name") {
+      let newCharByName = charByName.splice(
+        charByName.findIndex((elem) => elem.name === result),
         1
       );
-      setCharData(newCharData.concat(charData));
-    } else if (fromLocation === "/houses") {
-      let newHouseData = houseData.splice(
-        houseData.findIndex((elem) => elem.name === result),
+      charByName = newCharByName.concat(charByName);
+      setCharNameData(charByName);
+
+    } else if (fromLocation === "house") {
+      let newCharByHouse = charByHouse.splice(
+        charByHouse.findIndex((elem) => elem.house === result),
         1
       );
-      setCharData(newHouseData.concat(houseData));
-    } else if ((fromLocation = "/orders")) {
-      let newOrderData = orderData.splice(
-        orderData.findIndex((elem) => elem.name === result),
+      charByHouse = newCharByHouse.concat(charByHouse);
+      setCharHouseData(charByHouse);
+    } else if ((fromLocation = "order")) {
+      let newCharByOrder = charByOrder.splice(
+        charByOrder.findIndex((elem) => elem.order === result),
         1
       );
-      setCharData(newOrderData.concat(orderData));
+      charByOrder = newCharByOrder.concat(charByOrder);
+      setCharOrderData(charByOrder);
     }
-    setSearchString(`${result}#${fromLocation}`);
   };
 
-  //get backend data
   const url = "http://localhost:3001/GOT/characters";
   const [gotData, setGotData] = useState({
     characters: [],
     houses: [],
     relationships: [],
+    orders: [],
+    kills: [],
   });
 
-  //initialize page
   useEffect(() => {
     const getApi = async (url) => {
       const response = await fetch(url, { mode: "no-cors" });
       const apiData = await response.json();
       setGotData(apiData);
-      setSearchString("Stark");
+      setSearchString("stark");
     };
     getApi(url);
   }, []);
 
-  //page updater based upon search string- searchGroup is appended by #<group> (default is 'name')
-  //this component keeps the three arrays in harmony
   useEffect(() => {
-    const blankChar = [
-      {
-        name: "",
-        royalty: false,
-        image: "",
-        attack_value: 0,
-        order: "",
-        house: "",
-      },
+    let splitSearch = searchString.split("#");
+    splitSearch[1] = splitSearch[1] ? splitSearch[1] : "searchbar";
+
+    if (splitSearch[1] === "searchbar") {
+      charByName = gotData.characters.filter(
+        (elem) =>
+          elem.name &&
+          elem.name.toLowerCase().includes(splitSearch[0].toLowerCase())
+      );
+      charByHouse = gotData.characters.filter(
+        (elem) =>
+          elem.house &&
+          elem.house.toLowerCase().includes(splitSearch[0].toLowerCase())
+      );
+      charByOrder = gotData.characters.filter(
+        (elem) =>
+          elem.order &&
+          elem.order.toLowerCase().includes(splitSearch[0].toLowerCase())
+      );
+    } else {
+      charByName = gotData.characters.filter(
+        (elem) => elem.name && elem.name.includes(splitSearch[0])
+      );
+      charByHouse = gotData.characters.filter(
+        (elem) => elem.house && elem.house.includes(splitSearch[0])
+      );
+      charByOrder = gotData.characters.filter(
+        (elem) => elem.order && elem.order.includes(splitSearch[0])
+      );
+    }
+
+    charSearchArr = [
+      ...new Set(charByName.concat(charByHouse).concat(charByOrder)),
     ];
+    charByName = charSearchArr.filter((elem) => elem.name);
+    charByHouse = charSearchArr.filter((elem) => elem.house);
+    charByOrder = charSearchArr.filter((elem) => elem.order);
+    setCharNameData(charByName);
+    setCharHouseData(charByHouse);
+    setCharOrderData(charByOrder);
 
-    let tempSearch = searchString.split("#");
+    let houseSearchString = charSearchArr.length
+      ? "house" in charSearchArr[0]
+        ? charSearchArr[0].house
+        : "#"
+      : "#";
+    let houseSearchArr = gotData.houses.filter(
+      (elem) => elem.name && elem.name === houseSearchString
+    );
+    setHouseData(houseSearchArr);
+    houseSearchArr = gotData.characters.filter(
+      (elem) => elem.name && elem.house === houseSearchString
+    );
+    setCharInHouse(houseSearchArr);
 
-    // tempSearch[1] = tempSearch[1] ? tempSearch[1] : "  ";
-    // let searchGroup = (tempSearch[1].slice(1, -1) in ('order', 'house'))
-    //   ? tempSearch[1].slice(1, -1)
-    //   : 'name';
+    let orderSearchString = charSearchArr.length
+      ? "order" in charSearchArr[0]
+        ? charSearchArr[0].order
+        : "#"
+      : "#";
+
+    let orderSearchArr = gotData.orders.filter(
+      (elem) => elem.name && elem.name === orderSearchString
+    );
+    setOrderData(orderSearchArr);
+    orderSearchArr = gotData.characters.filter(
+      (elem) => elem.name && elem.order === orderSearchString
+    );
+    setCharInOrder(orderSearchArr);
 
 
-    let searchGroup = tempSearch[1] ? tempSearch[1].slice(1, -1) : "name";
-    if (searchGroup !== "order" || searchGroup !== "house") {
-      searchGroup = "name";
-    }
-
-
-    // let charSearchArr = gotData.characters.filter((elem) => {
-    //   elem[searchGroup] && elem[searchGroup].includes(tempSearch[0])
-    // });
-    // charSearchArr = charSearchArr ? charSearchArr : blankChar;
-
-    if (tempSearch[0]) {
-      let charSearchArr = [];
-      gotData.characters.forEach((elem) => {
-        if (elem[searchGroup] !== null) {
-          if (elem[searchGroup].includes(tempSearch[0])) {
-            charSearchArr.push(elem);
-          }
-        }
-      });
-
-      // let houseSearchArr = gotData.houses.map((elem) =>
-      //   elem.name.includes(charSearchArr) ? charSearchArr[0].house : []);
-      // houseSearchArr = houseSearchArr.filter((elem) => elem !== undefined || elem !== []);
-      // console.log("House array: ", houseSearchArr);
-
-      let houseSearchArr = gotData.houses.filter((elem) =>
-        elem.name.includes(charSearchArr ? charSearchArr[0].house : "")
-      );
-
-      // let orderSearchArr = gotData.orders.map((elem) =>
-      //   elem.name.includes(charSearchArr) ? charSearchArr[0].order : []);
-      // orderSearchArr = orderSearchArr.filter((elem) => elem !== undefined || elem !== []);
-      // console.log("Order array: ", orderSearchArr);
-
-      let orderSearchArr = gotData.orders.filter((elem) =>
-        elem.name.includes(charSearchArr ? charSearchArr[0].order : "")
-      );
-
-      setCharData(charSearchArr);
-      setHouseData(houseSearchArr);
-      setOrderData(orderSearchArr);
-    }
   }, [searchString]);
 
   const customTheme = createTheme({
@@ -160,7 +187,6 @@ function App() {
         <header>
           <SearchAppBar handleSearch={handleSearch} />
         </header>
-
         <body>
           <Switch>
             <Route path="/" exact component={Home} />
@@ -169,9 +195,10 @@ function App() {
               exact
               render={() => (
                 <Characters
-                  match={charData}
-                  matchfull={gotData.characters}
-                  matchChar={charData}
+                  dataCard={charNameData}
+                  dataTable={charNameData}
+                  dataGroup={[]}
+                  dataDrawer={gotData.characters}
                   handleChipClick={handleChipClick}
                   handleTableSort={handleTableSort}
                 />
@@ -183,11 +210,12 @@ function App() {
               exact
               render={() => (
                 <Houses
-                  match={houseData}
-                  matchfull={gotData.houses}
-                  matchChar={charData}
+                  dataCard={houseData}
+                  dataTable={charHouseData}
+                  dataGroup={charInHouse}
+                  dataDrawer={gotData.houses}
                   handleChipClick={handleChipClick}
-                  // handleTableSort={handleTableSort}
+                  handleTableSort={handleTableSort}
                 />
               )}
             />
@@ -197,32 +225,31 @@ function App() {
               exact
               render={() => (
                 <Orders
-                  match={orderData}
-                  matchfull={gotData.orders}
-                  matchChar={charData}
+                  dataCard={orderData}
+                  dataTable={charOrderData}
+                  dataGroup={charInOrder}
+                  dataDrawer={gotData.orders}
                   handleChipClick={handleChipClick}
-                  // handleTableSort={handleTableSort}
+                  handleTableSort={handleTableSort}
                 />
               )}
             />
             <Route path="/tree" exact component={Tree} />
-            {/* <Route path="/battle" exact component={Battle} /> */}
             <Route
               path="/battle"
               exact
               render={() => (
                 <Battle
-                  match={charData}
+                  match={charNameData}
                   matchfull={gotData.characters}
-                  matchChar={charData}
+                  matchChar={charNameData}
                   handleChipClick={handleChipClick}
-                  // handleTableSort={handleTableSort}
                 />
               )}
             />
           </Switch>
         </body>
-                  {/* <Stack spacing={1}>
+        {/* <Stack spacing={1}>
                     <Skeleton variant="text" />
                     <Skeleton variant="circular" width={40} height={40} />
                     <Skeleton variant="rectangular" width={210} height={118} />
