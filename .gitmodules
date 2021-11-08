@@ -1,0 +1,3 @@
+[submodule "Game-Of-Thrones-Backend"]
+	path = Game-Of-Thrones-Backend
+	url = https://github.com/brendan-kennedy/Game-Of-Thrones-Backend.git
